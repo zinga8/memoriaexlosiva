@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momória Explosiva</title>
+  <link href="icones/logo.png" rel="icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: Chewy;
+    }
+
+    .screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3rem;
+      transition: opacity 1s ease-in-out;
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+   
+	.screen6 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+
+    .top-left, .top-right {
+      position: absolute;
+      top: 10px;
+      width: 80px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .top-left {
+      left: 10px;
+    }
+
+    .top-right {
+      right: 10px;
+    }
+
+    .center-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: auto;
+    }
+
+    .footer-banner {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+     /* background-image: url('icones/fundo.jpg');*/
+      background-size: cover;
+      background-position: center;
+    }
+
+    .footer-overlays {
+      position: fixed;
+      bottom: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 20px;
+    }
+
+    .footer-overlays img {
+      width: 60px;
+      height: auto;
+    }
+
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+    }
+
+/* screen3 conteúdo */
+    .screen01 .top-left-screen01 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+	
+    .screen01 .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      background-image: url('icones/fundo_um.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	  background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+
+    .screen01 .center-box .top-img,
+    .screen01 .center-box .bottom-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .screen01 .carousel {
+     display: flex;
+  flex-direction: column; /* Agora em coluna (vertical) */
+  overflow-y: auto;        /* Rolagem vertical */
+  overflow-x: hidden;      /* Oculta rolagem horizontal */
+  gap: 20px;
+  width: 100%;
+  height: 300px;           /* Defina uma altura visível para permitir rolagem */
+  padding: 10px 0;
+    }
+	
+    .screen01 .carousel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .screen01 .carousel::-webkit-scrollbar-thumb {
+      background: #aaa;
+      border-radius: 3px;
+    }
+
+    .screen01 .carousel-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* espaço entre o ícone e o texto */
+  width: 100%;
+  color: white;
+}
+
+
+    .screen01 .carousel-item img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+	
+	.lado_a_lado{
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* espaço entre o ícone e o texto */
+  width: 100%;
+  color: white;
+}
+
+
+.cima_baixo{
+     display: flex;
+  flex-direction: column; /* Agora em coluna (vertical) */
+  overflow-y: hidden;        /* Rolagem vertical */
+  overflow-x: hidden;      /* Oculta rolagem horizontal */
+  gap: 20px;
+  width: 100%;
+  padding: 10px 0;
+    }
+
+.cima_baixo_geral{
+     display: flex;
+  flex-direction: column; /* Agora em coluna (vertical) */
+  overflow-y: auto;        /* Rolagem vertical */
+  overflow-x: hidden;      /* Oculta rolagem horizontal */
+  gap: 20px;
+  width: 100%;
+  height: 300px;           /* Defina uma altura visível para permitir rolagem */
+  padding: 10px 0;
+    }
+	
+	.screen_perfil .top-left-screen_perfil{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+	
+	.screen_perfil .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      background-image: url('icones/fundo_um.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	  
+	  background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+	
+	.screen6 .image-grid img{height:80px;}
+	
+	
+	
+	.tutorial-balloon {
+  position: absolute;
+  background: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  max-width: 250px;
+  z-index: 9999;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+}
+
+.tutorial-arrow {
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #333;
+  margin: auto;
+}
+
+.tutorial-next-btn {
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: #f90;
+  color: #000;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.tutorial-finger {
+  position: absolute;
+  font-size: 40px;
+  animation: sobeDesce 1.2s infinite;
+  z-index: 9999;
+}
+
+@keyframes sobeDesce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+  </style>
+</head>
+<body>
+
+<div class="screen screen6 active">
+    <img src="icones/btn_voltar.png" class="top-left" alt="Voltar" onclick="voltarParaScreen2()" />
+	 
+    <div class="image-grid">
+	  
+	  <img id="a11" src="icones/animal_1.png" />
+      <img id="a7" src="icones/animal_2.png" />
+      <img id="a8" src="icones/animal_3.png" />
+      <img id="a12" src="icones/animal_4.png" />
+      <img id="a13" src="icones/animal_5.png" />
+      <img id="a5" src="icones/animal_6.png" />
+      <img id="a6" src="icones/animal_7.png" />
+      <img id="a14" src="icones/animal_8.png" />
+	  
+	  
+      <img id="a15" src="icones/animal_9.png" />
+	  <img id="a1" src="icones/animal_10.png" />
+	  <img id="a2" src="icones/animal_11.png" />
+      <img id="a16" src="icones/animal_12.png" />
+	  
+	  
+      <img id="a17" src="icones/animal_13.png" />
+      <img id="a3" src="icones/animal_14.png" />
+	  <img id="a4" src="icones/animal_15.png" />
+      <img id="a18" src="icones/animal_16.png" />
+      <img id="a19" src="icones/animal_17.png" />
+      <img id="a9" src="icones/animal_18.png" />
+      <img id="a10" src="icones/animal_19.png" />
+	  <img id="a20" src="icones/meta_feita.png" />
+	  
+    </div>
+  </div>
+  <div id="tutorial-balloon" class="tutorial-balloon" style="display:none; left: 20px; top: 80px;">
+  <div id="tutorial-text">Olá! Quando piscar um icone, clica nele e memoriza</div>
+  <div class="tutorial-arrow"></div>
+  <!--<button class="tutorial-next-btn" onclick="nextTutorial()">Próximo</button>-->
+</div>
+
+<div id="tutorial-finger" class="tutorial-finger" style="display:none; left: 120px; top: 180px;"><img src="icones/dedo.png" style="height:80px;"/></div>
+
+<script>
+const tutorialSteps = [
+  { text: "Olá! Quando piscar um icone, clica nele e memoriza", x: 70, y: 120, fingerX: 220, fingerY: 150 },
+  { text: "Click no icone a sua escolha", x: 20, y: 150, fingerX: 100, fingerY: 180 },
+  { text: "Quando piscar o próximo icone, não clica. Apenas memoriza", x: 20, y: 300, fingerX: -1050, fingerY: -3050 },
+  { text: "Agora clica no primeiro icone memorizado", x: 70, y: 120, fingerX: 220, fingerY: 150 },
+  { text: "Agora clica no segundo icone memorizado", x: 20, y: 150, fingerX: 100, fingerY: 180 },
+  { text: "Agora clica no terceiro icone memorizado", x: 20, y: 250, fingerX: 120, fingerY: 300 },
+  { text: "Se errar na sequência, EXPLODE!", x: 20, y: 250, fingerX: -1020, fingerY: -3000 }
+];
+let tutorialIndex = 0;
+
+function startTutorial() {
+  tutorialIndex = 0;
+  showTutorialStep();
+  setTimeout(() => {jogando();}, 2000);
+}
+
+function showTutorialStep() {
+  const balloon = document.getElementById("tutorial-balloon");
+  const finger = document.getElementById("tutorial-finger");
+  const step = tutorialSteps[tutorialIndex];
+
+  balloon.style.left = step.x + "px";
+  balloon.style.top = step.y + "px";
+  document.getElementById("tutorial-text").innerText = step.text;
+  balloon.style.display = "block";
+
+  finger.style.left = step.fingerX + "px";
+  finger.style.top = step.fingerY + "px";
+  finger.style.display = "block";
+}
+
+function nextTutorial() {
+  tutorialIndex++;
+  if (tutorialIndex >= tutorialSteps.length) {
+    document.getElementById("tutorial-balloon").style.display = "none";
+    document.getElementById("tutorial-finger").style.display = "none";
+  } else {
+    showTutorialStep();
+  }
+}
+
+// Inicia o tutorial automaticamente (ou chame startTutorial() quando quiser)
+startTutorial();
+   let avanca=0;
+   if(avanca==0){
+   
+   let musica="";
+   musica=localStorage.getItem("musica");
+			if(musica=="ativo"){
+			musica="";
+			var musica1= new Audio("musica/musica.mp3");
+musica1.loop = true;
+musica1.play();}
+
+			avanca=1;marcarCores();}
+   function marcarCores(){
+   document.getElementById("a1").style.opacity="0";document.getElementById("a2").style.opacity="0";
+document.getElementById("a3").style.opacity="0";document.getElementById("a4").style.opacity="0";
+document.getElementById("a5").style.opacity="0";document.getElementById("a6").style.opacity="0";
+document.getElementById("a7").style.opacity="0";document.getElementById("a8").style.opacity="0";
+document.getElementById("a9").style.opacity="0";document.getElementById("a10").style.opacity="0";
+document.getElementById("a11").style.opacity="0";document.getElementById("a12").style.opacity="0";
+document.getElementById("a13").style.opacity="0";document.getElementById("a14").style.opacity="0";
+document.getElementById("a15").style.opacity="0";document.getElementById("a16").style.opacity="0";
+document.getElementById("a17").style.opacity="0";document.getElementById("a18").style.opacity="0";
+document.getElementById("a19").style.opacity="0";document.getElementById("a20").style.opacity="0";
+
+for(let i=1;i<4+1;i++){
+document.getElementById("a"+i).style.opacity="1";document.getElementById("a"+i).style.cursor="pointer";
+}
+
+}
+
+
+document.addEventListener('click', function(event) {
+let som="";
+   som=localStorage.getItem("som");
+			var musica2= new Audio("musica/toque.wav");
+musica2.loop = false;
+musica2.play();
+	
+    if(perdeu==5){perdeu=6;}else if(perdeu==6){window.location="index.html";}
+});
+
+function jogando(){
+cor_escolhida="a2";
+document.getElementById(cor_escolhida).style.opacity="0";
+setTimeout(() => {document.getElementById("a2").style.opacity="1";}, 500);
+}
+
+let perdeu=0;
+document.getElementById("a2").addEventListener("click", () => {
+if(perdeu==0){perdeu=1;nextTutorial();}if(perdeu==2){perdeu=3;nextTutorial();}
+});
+
+document.getElementById("a1").addEventListener("click", () => {
+if(perdeu==1){perdeu=2;nextTutorial();
+cor_escolhida="a3";
+document.getElementById(cor_escolhida).style.opacity="0";
+setTimeout(() => {document.getElementById("a3").style.opacity="1";pulamais();}, 500);}
+if(perdeu==3){perdeu=4;nextTutorial();}
+});
+
+function pulamais(){
+setTimeout(() => {nextTutorial();}, 4000);
+}
+
+document.getElementById("a3").addEventListener("click", () => {
+if(perdeu==4){perdeu=5;nextTutorial();}
+});
+    </script>
+	
+	</body>
+</html>

@@ -1,0 +1,4910 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Momória Explosiva</title>
+  <link href="icones/logo.png" rel="icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: Chewy;
+    }
+
+    .screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 3rem;
+      transition: opacity 1s ease-in-out;
+      opacity: 0;
+      z-index: 0;
+    }
+
+    .active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .screen1 {
+      background-image: url('icones/fundo_splash.png');
+    }
+	
+	.screen01 {
+      background-image: url('icones/fundo.jpg');
+    }
+	
+	.screen_perfil {
+      background-image: url('icones/fundo.jpg');
+    }
+
+    .screen2 {
+      background-image: url('icones/fundo.jpg');
+    }
+
+    .screen3 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen4 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen5 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen6 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen7 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen8 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen9 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+	
+	.screen10 {
+      background-image: url('icones/fundo_dois.png');
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .top-left, .top-right {
+      position: absolute;
+      top: 10px;
+      width: 80px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    .top-left {
+      left: 10px;
+    }
+
+    .top-right {
+      right: 10px;
+    }
+
+    .center-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: auto;
+    }
+
+    .footer-banner {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+     /* background-image: url('icones/fundo.jpg');*/
+      background-size: cover;
+      background-position: center;
+    }
+
+    .footer-overlays {
+      position: fixed;
+      bottom: 100px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 20px;
+    }
+
+    .footer-overlays img {
+      width: 60px;
+      height: auto;
+    }
+
+    .footer-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -10px;
+    }
+
+    /* screen3 conteúdo */
+    .screen3 .top-left-screen3 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+
+    .screen3 .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+     /*background-image: url('icones/fundo_um.png');*/
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	   background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+
+    .screen3 .center-box .top-img,
+    .screen3 .center-box .bottom-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .screen3 .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      width: 100%;
+      padding: 10px 0;
+    }
+	
+    .carousel::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .carousel::-webkit-scrollbar-thumb {
+      background: #aaa;
+      border-radius: 3px;
+    }
+
+    .carousel-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* espaço entre o ícone e o texto */
+  width: 160px;
+  color: white;
+}
+
+
+    .carousel-item img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+	
+	
+	
+	
+	/* screen4 conteúdo */
+    .screen4 .top-left-screen4 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+
+    .screen4 .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      background-image: url('icones/fundo_um.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	  background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+
+    .screen4 .center-box .top-img,
+    .screen4 .center-box .bottom-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .screen4 .carousel {
+	text-align:center;
+    }
+	
+	
+	
+	
+	
+	/* screen5 conteúdo */
+    .screen5 .top-left-screen5 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+
+    .screen5 .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      background-image: url('icones/fundo_um.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	  background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+
+    .screen5 .center-box .top-img,
+    .screen5 .center-box .bottom-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .screen5 .carousel {
+	text-align:center;
+    }
+	
+	
+	
+	
+	.top-title {
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+	  width:100%;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 90%;
+      max-width: 800px;
+      margin: 50px auto 0;
+      justify-items: center;
+    }
+
+    .image-grid img {
+      width: 80px;
+      height: auto;
+      border-radius: 8px;
+    }
+	
+	
+	
+	
+	
+	
+	/*.image-grid img {
+  opacity: 0;
+  cursor: pointer;
+  transition: transform 0.3s, filter 0.3s, opacity 0.3s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.flash {
+  transform: scale(1.2);
+  filter: brightness(1.5);
+}*/
+
+
+
+
+
+
+/* screen3 conteúdo */
+    .screen01 .top-left-screen01 {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+	
+    .screen01 .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      background-image: url('icones/fundo_um.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	  background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+
+    .screen01 .center-box .top-img,
+    .screen01 .center-box .bottom-img {
+      width: 100%;
+      height: auto;
+    }
+
+    .screen01 .carousel {
+     display: flex;
+  flex-direction: column; /* Agora em coluna (vertical) */
+  overflow-y: auto;        /* Rolagem vertical */
+  overflow-x: hidden;      /* Oculta rolagem horizontal */
+  gap: 20px;
+  width: 100%;
+  height: 300px;           /* Defina uma altura visível para permitir rolagem */
+  padding: 10px 0;
+    }
+	
+    .screen01 .carousel::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .screen01 .carousel::-webkit-scrollbar-thumb {
+      background: #aaa;
+      border-radius: 3px;
+    }
+
+    .screen01 .carousel-item {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* espaço entre o ícone e o texto */
+  width: 100%;
+  color: white;
+}
+
+
+    .screen01 .carousel-item img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 5px;
+    }
+	
+	.lado_a_lado{
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* espaço entre o ícone e o texto */
+  width: 100%;
+  color: white;
+}
+
+
+.cima_baixo{
+     display: flex;
+  flex-direction: column; /* Agora em coluna (vertical) */
+  overflow-y: hidden;        /* Rolagem vertical */
+  overflow-x: hidden;      /* Oculta rolagem horizontal */
+  gap: 20px;
+  width: 100%;
+  padding: 10px 0;
+    }
+
+.cima_baixo_geral{
+     display: flex;
+  flex-direction: column; /* Agora em coluna (vertical) */
+  overflow-y: auto;        /* Rolagem vertical */
+  overflow-x: hidden;      /* Oculta rolagem horizontal */
+  gap: 20px;
+  width: 100%;
+  height: 300px;           /* Defina uma altura visível para permitir rolagem */
+  padding: 10px 0;
+    }
+	
+	.screen_perfil .top-left-screen_perfil{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      width: 60px;
+      height: auto;
+    }
+	
+	.screen_perfil .center-box {
+      position: relative;
+      width: 80%;
+      margin: auto;
+      background-image: url('icones/fundo_um.png');
+      background-size: cover;
+      background-position: center;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 10px;
+      gap: 10px;
+	  
+	  
+	  background-color: #0070C0;   /* azul (pode trocar pelo tom desejado) */
+  border: 5px solid #ffffff;   /* borda branca */
+  border-radius: 12px;         /* cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* sombra suave */
+  padding: 16px;   
+    }
+	
+	
+	
+	.timer-container{
+	 position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 80px;
+  height: auto;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+	.bomb-icon {
+  font-size: 60px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); color: white; }
+  50% { transform: scale(1.2); color: red; }
+  100% { transform: scale(1); color: white; }
+}
+
+
+ .div_xbola {
+	width:100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+	  color:black;
+	  font-size:24px;
+    }
+	
+    #tabuleiro {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .celula {
+      width: 100px;
+      height: 100px;
+      background: #fff;
+      border: 2px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .celula:hover {
+      background: #eaeaea;
+    }
+    #status {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+    button {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      border: none;
+      background: #333;
+      color: #fff;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+	
+	
+	.screen6 .image-grid img{height:80px;}
+	.screen7 .image-grid img{height:80px;}
+	.screen8 .image-grid img{height:80px;}
+	
+	
+	
+	#jogadores span { margin-right: 8px; }
+        .ativo { color: green; font-weight: bold; }
+        #sequencia { margin-top: 10px; font-size: 18px; }
+		
+		.div_stop {
+	width:80%;
+      margin-left: 20%;
+	  font-size:24px;
+    }
+	
+	
+	#tabuleiro1 {
+      display: grid;
+      grid-template-columns: repeat(4, 80px);
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .celula1 {
+      width: 80px;
+      height: 80px;
+      background: white;
+      border: 2px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .celula1:hover {
+      background: #e0e0e0;
+    }
+    #status2 {
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+    
+	.div_xbola1 {
+	width:100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+	  color:black;
+	  font-size:24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Tela 1 -->
+  <div class="screen screen1 active"></div>
+
+  <!-- Tela 2 -->
+  <div class="screen screen2">
+    <img src="icones/btn_definicao.png" class="top-left" id="btnToScreen3" alt="Esquerda Topo" />
+	<img src="icones/logo.png" class="top-right" alt="Direita Topo" />
+    <img src="icones/btn_jogar.png" class="center-image" alt="Centro" />
+	
+	<div class="top-center" style="margin-top:35%;">
+	 <img src="icones/xbola.png" style="height:60px;" onclick="irxbola()"/>
+	<img src="icones/stop.png" style="height:60px;" onclick="irstop()"/>
+    </div>
+	
+    <div class="footer-banner"></div>
+
+    <div class="footer-overlays">
+	  <img src="icones/btn_modo.png" alt="Esquerda Rodapé" id="btn_modo"/>
+      <div class="footer-center">
+        <img src="icones/btn_ranking.png" alt="Centro Rodapé" id="ir_ranking"/>
+      </div>
+      <img src="icones/btn_loja.png" alt="Direita Rodapé" id="ir_loja"/>
+    </div>
+  </div>
+  
+  
+  <div class="screen screen3">
+    <img src="icones/btn_voltar.png" class="top-left-screen3" alt="Voltar" />
+
+    <div class="center-box">
+      <img src="icones/btn_som.png" style="width:20%;" class="top-img" alt="Imagem Topo" id="btn_som"/>
+	  <img src="icones/btn_musica.png" style="width:20%;" class="bottom-img" id="btn_musica" alt="Imagem Fundo" />
+      <a href="https://memoriaexplosiva.com/termos.html" style="color:white;" id="termo">Termos de uso</a>
+	  <a href="https://memoriaexplosiva.com/tutorial.html" style="color:white;" id="tutorial">Tutorial</a>
+	  
+      <div class="carousel">
+        <div class="carousel-item">
+          <img src="icones/pt.jpg" style="width:20%;" alt="Icone 1" />
+          <span id="pt">PT</span>
+        </div>
+        <div class="carousel-item">
+          <img src="icones/en.jpg" alt="Icone 2" />
+          <span id="en">EN</span>
+        </div>
+        <div class="carousel-item">
+          <img src="icones/esp.jpg" alt="Icone 3" />
+          <span id="esp">ESP</span>
+        </div>
+        <div class="carousel-item">
+          <img src="icones/fr.jpg" alt="Icone 4" />
+          <span id="fr">FR</span>
+        </div>
+        <div class="carousel-item">
+          <img src="icones/ch.jpg" alt="Icone 5" />
+          <span id="ch">CH</span>
+        </div>
+      </div>
+
+      
+    </div>
+	
+	<div class="footer-banner"></div>
+  </div>
+
+  <!-- Tela 3 -->
+  <div class="screen screen01">
+    <img src="icones/btn_voltar.png" class="top-left-screen01" alt="Voltar" />
+
+    <div class="center-box">
+      <div class="carousel">
+	  
+	  <div class="carousel-item">
+          <span id="avatar">Avatar</span>
+        </div>
+		<!--style="border: 1.5px solid green;"-->
+        <div class="carousel-item">
+		 <div class="cima_baixo">
+		 <img src="icones/avatar1.png" id="avatar1"/>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar2.png" id="avatar2"/>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar3.png" id="avatar3"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_3">5 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar4.png" id="avatar4"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_4">8 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+        </div>
+		
+		<div class="carousel-item">
+         <div class="cima_baixo">
+		 <img src="icones/avatar5.png" id="avatar5"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_5">20 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar6.png" id="avatar6"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_6">30 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar7.png" id="avatar7"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_7">50 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar8.png" id="avatar8"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_8">90 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+        </div>
+		
+		<div class="carousel-item">
+         <div class="cima_baixo">
+		 <img src="icones/avatar9.png" id="avatar9"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_9">100 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar10.png" id="avatar10"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_10">120 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar11.png" id="avatar11"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_11">200 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar12.png" id="avatar12"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_12">300 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+        </div>
+		
+		<div class="carousel-item">
+         <div class="cima_baixo">
+		 <img src="icones/avatar13.png" id="avatar13"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_13">300 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar14.png" id="avatar14"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_14">500 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar15.png" id="avatar15"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_15">600 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar16.png" id="avatar16"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="avatar_16">900 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+        </div>
+		
+		<div class="carousel-item">
+		  <span id="tema">Tema</span>
+        </div>
+		
+        <div class="carousel-item">
+		<div class="cima_baixo">
+		 <img src="icones/exemplar_fundo1.png" id="fundo1"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_1">1100 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/exemplar_fundo2.png" id="fundo2"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_2">1100 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/exemplar_fundo3.png" id="fundo3"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_3">1180 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/exemplar_fundo4.png" id="fundo4"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_4">605 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+        </div>
+		
+		<div class="carousel-item">
+         <div class="cima_baixo">
+		 <img src="icones/exemplar_fundo5.png" id="fundo5"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_5">900 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/exemplar_fundo6.png" id="fundo6"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_6">918 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/exemplar_fundo7.png" id="fundo7"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="fundo_7">1200 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo"><img src="icones/fundo_dois.png"id="fundo0"/></div>
+		 
+        </div>
+		
+		<div class="carousel-item">
+         <span id="icones"> Icones</span>
+        </div>
+		
+        <div class="carousel-item">
+		<div class="cima_baixo">
+		 <img src="icones/cor_vermelho.png" id="icone1"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="icone_1">2 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/avatar1.png" id="icone2"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="icone_2">5 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/ciencia_19.png" id="icone3"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="icone_3">10 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/fruta_11.png" id="icone4"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="icone_4">30 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+        </div>
+		
+		<div class="carousel-item">
+		<div class="cima_baixo">
+		 <img src="icones/objeto_2.png" id="icone5"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="icone_5">50 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/planeta_3.png" id="icone6"/>
+		 <div class="lado_a_lado" style="font-size:14px;" id="icone_6">100 <img src="icones/moedas.png" style="width:50%;"/></div>
+		 </div>
+		 <div class="cima_baixo">
+		 <img src="icones/animal_3.png" id="icone7"/></div>
+        </div>
+		
+      </div>
+    </div>
+	
+	<div class="footer-banner"></div>
+  </div>
+  
+  
+   <!-- Tela 3 -->
+  <div class="screen screen_perfil">
+    <img src="icones/btn_voltar.png" class="top-left-screen_perfil" alt="Voltar" />
+
+    <div class="center-box">
+      <div class="cima_baixo_geral">
+	  
+	  <div class="lado_a_lado">
+         <div class="carousel-item">
+         <img src="icones/avatar1.png" id="foto_perfil"/>
+        </div>
+		<div class="carousel-item" style="font-size:14px;">
+		<div class="cima_baixo">
+		<span id="meu_id">id: | 0 Pontos | 0 /200 Nível | 0 Partidas | 0 Meta</span>
+		 <input type="name" value="" id="nome_perfil" placeholder="Nome de perfil"/>
+		 <span id="minhas_moedas">0 <img src="icones/moedas.png"/> 0 <img src="icones/coracoes.png"/></span>
+		</div>
+        </div>
+        </div>
+		
+		<span id="titulocomunidade">Comunidade</span>
+		<div class="lado_a_lado">
+         <div class="carousel-item" style="font-size:14px;">
+		 <input type="name" value="" id="id_comunidade" placeholder="Id da comunidade"/>
+		 <span id="meu_idcomunidade">Sua comunidade: </span>
+         <img src="icones/btn_jogar.png" id="abrir_comunidade"/>
+		 <span id="fechar_comunidade" style="font-size:30px; color:red;">X</span>
+        </div>
+		
+        </div>
+		
+		
+		
+		<div class="lado_a_lado">
+		<span id="tituloranking">Ranking Mundial</span>
+         <div class="carousel-item" style="font-size:14px;">
+         <img src="icones/btn_jogar.png" id="jogar_online"/>
+        </div>
+        </div>
+		
+		
+		<div class="carousel" id="osrankings">
+        <div class="carousel-item" style="font-size:14px;">
+          <img src="icones/avatar1.png" style="width:20%;" alt="Icone 1" />
+          <span>Tu - 0ª</span>
+        </div>
+      </div>
+		
+		
+		
+      </div>
+    </div>
+	
+	<div class="footer-banner"></div>
+  </div>
+  
+  
+  
+  <!-- Tela 3 -->
+  <div class="screen screen4">
+    <img src="icones/btn_voltar.png" class="top-left-screen4" alt="Voltar" />
+
+    <div class="center-box">
+	
+      <div class="carousel">
+        <div class="carousel-item">
+          <span id="nivel_facil">INICIANTE</span>
+        </div>
+      </div>
+	  
+	  <div class="carousel">
+        <div class="carousel-item">
+          <span id="nivel_intermedio">INTERMÉDIO</span>
+        </div>
+      </div>
+	  
+	  <div class="carousel">
+        <div class="carousel-item">
+          <span id="nivel_profissional">PROFISSIONAL</span>
+        </div>
+      </div>
+
+      
+    </div>
+	
+	<div class="footer-banner"></div>
+  </div>
+  
+  
+  
+  <!-- Tela 3 -->
+  <div class="screen screen5">
+    <img src="icones/btn_voltar.png" class="top-left-screen5" alt="Voltar" />
+
+    <div class="center-box">
+	
+      <div class="carousel">
+        <div class="carousel-item">
+          <img src="icones/btn_computador.png" style="width:80%;" alt="Icone 3" id="jogar_maquina" />
+        </div>
+      </div>
+	  
+	  <div class="carousel">
+        <div class="carousel-item">
+          <img src="icones/btn_dois.png" style="width:80%;" alt="Icone 3" id="jogar_dois"/>
+        </div>
+      </div>
+	  
+	  <div class="carousel">
+        <div class="carousel-item">
+          <!--<img src="icones/btn_ranking.png" style="width:80%;" alt="Icone 3" />-->
+        </div>
+      </div>
+
+      
+    </div>
+	
+	<div class="footer-banner"></div>
+  </div>
+  
+  
+  
+  <div class="screen screen6">
+    <img src="icones/btn_voltar.png" class="top-left" alt="Voltar" onclick="voltarParaScreen2()" />
+	 <div class="top-title" style="font-size:14px;" id="titulojogo">0/200 Nível | 0 Partidas | <br>0 Meta | 0 Pontos | 0 Acertos</div>
+	 
+	<div class="timer-container">
+    <div class="bomb-icon">💣</div>
+    <div class="time" id="timer">10</div>
+  </div>
+	
+    <div class="image-grid">
+	  
+	  <img id="a11" src="icones/animal_1.png" />
+      <img id="a7" src="icones/animal_2.png" />
+      <img id="a8" src="icones/animal_3.png" />
+      <img id="a12" src="icones/animal_4.png" />
+      <img id="a13" src="icones/animal_5.png" />
+      <img id="a5" src="icones/animal_6.png" />
+      <img id="a6" src="icones/animal_7.png" />
+      <img id="a14" src="icones/animal_8.png" />
+	  
+	  
+      <img id="a15" src="icones/animal_9.png" />
+	  <img id="a1" src="icones/animal_10.png" />
+	  <img id="a2" src="icones/animal_11.png" />
+      <img id="a16" src="icones/animal_12.png" />
+	  
+	  
+      <img id="a17" src="icones/animal_13.png" />
+      <img id="a3" src="icones/animal_14.png" />
+	  <img id="a4" src="icones/animal_15.png" />
+      <img id="a18" src="icones/animal_16.png" />
+      <img id="a19" src="icones/animal_17.png" />
+      <img id="a9" src="icones/animal_18.png" />
+      <img id="a10" src="icones/animal_19.png" />
+	  <img id="a20" src="icones/meta_feita.png" />
+	  
+    </div>
+  </div>
+  
+  
+  <div class="screen screen7">
+    <img src="icones/btn_voltar.png" class="top-left" alt="Voltar" onclick="voltarParaScreen3()" />
+    <div class="top-title"><span style="color:yellow" id="jogador_1">0 Pontos</span></div>
+
+    <div class="image-grid">
+      <!-- 20 imagens -->
+      <img id="aaa1" src="icones/animal_1.png"/>
+	  <img id="aaa2" src="icones/animal_2.png" />
+      <img id="aaa3" src="icones/animal_3.png" />
+	  <img id="aaa4" src="icones/animal_4.png" />
+	  <img id="aaa5" src="icones/animal_5.png" />
+      <img id="aaa6" src="icones/animal_6.png" />
+	  <img id="aaa7" src="icones/animal_7.png" />
+      <img id="aaa8" src="icones/animal_8.png" />
+	  
+	  
+      <img id="a20" src="icones/meta_feita.png" />
+	  <img id="a20" src="icones/meta_feita.png" />
+	  <img id="a20" src="icones/meta_feita.png" />
+	  <img id="a20" src="icones/meta_feita.png" />
+	  
+	  
+      <img id="aa1" src="icones/animal_1.png" />
+	  <img id="aa2" src="icones/animal_2.png" />
+      <img id="aa3" src="icones/animal_3.png" />
+	  <img id="aa4" src="icones/animal_4.png" />
+	  <img id="aa5" src="icones/animal_5.png" />
+      <img id="aa6" src="icones/animal_6.png" />
+	  <img id="aa7" src="icones/animal_7.png" />
+      <img id="aa8" src="icones/animal_8.png" />
+	  <div class="top-title"><span id="jogador_2">0 Pontos</span></div>
+    </div>
+  </div>
+  
+  
+  
+  <div class="screen screen8">
+    <img src="icones/btn_voltar.png" class="top-left" alt="Voltar" onclick="voltarParaScreen4()" />
+	<img src="icones/btn_jogar.png" style="width:15%; margin-left:20%;" onclick="comecarComunidade()"/>
+    <div class="top-title"><span style="color:yellow" id="jogadores_ativos"></span></div>
+
+    <div class="image-grid">
+      <!-- 20 imagens -->
+      <img id="aaaa1" src="icones/animal_1.png" />
+      <img id="aaaa2" src="icones/animal_2.png" />
+      <img id="aaaa3" src="icones/animal_3.png" />
+      <img id="aaaa4" src="icones/animal_4.png" />
+      <img id="aaaa5" src="icones/animal_5.png" />
+      <img id="aaaa6" src="icones/animal_6.png" />
+      <img id="aaaa7" src="icones/animal_7.png" />
+      <img id="aaaa8" src="icones/animal_8.png" />
+	  
+	  
+      <img id="aaaa9" src="icones/animal_9.png" />
+	  <img id="aaaa10" src="icones/animal_10.png" />
+	  <img id="aaaa11" src="icones/animal_11.png" />
+      <img id="aaaa12" src="icones/animal_12.png" />
+	  
+	  
+      <img id="aaaa13" src="icones/animal_13.png" />
+      <img id="aaaa14" src="icones/animal_14.png" />
+	  <img id="aaaa15" src="icones/animal_15.png" />
+      <img id="aaaa16" src="icones/animal_16.png" />
+	  <img id="aaaa20" src="icones/meta_feita.png" />
+	  
+	  <div class="top-title"><span id="jogadores_inativos">0 Pontos</span></div>
+    </div>
+  </div>
+  
+  
+  <div class="screen screen9">
+    <img src="icones/btn_voltar.png" class="top-left" alt="Voltar" onclick="voltarParaScreen5()" />
+	<img src="icones/voltar.png" style="width:10%; margin-left:20%;" onclick="reiniciar()"/>
+	
+	<div class="div_xbola">
+	<div id="status1" style="color:white;">Jogador O</div>
+  <div id="tabuleiro"></div>
+  <div id="status" style="color:white;">Jogador X</div>
+  </div>
+  
+  <div class="div_xbola1">
+	<div id="status1a" style="color:white;">Jogador O</div>
+  <div id="tabuleiro1"></div>
+  <div id="status2" style="color:white;">Jogador X</div>
+  </div>
+  
+  </div>
+  
+  <div class="screen screen10">
+    <img src="icones/btn_voltar.png" class="top-left" alt="Voltar" onclick="voltarParaScreen6()" />
+	<img src="icones/voltar.png" style="width:10%; margin-left:20%;" onclick="resetar()"/>
+	
+	<div class="div_stop">
+	
+    <input type="text" id="categoria" placeholder="Id do jogo">
+	<img src="icones/btn_jogar.png" style="width:15%;" onclick="criarCategoria()"/>
+
+    <br><br>
+    <input type="text" id="nomeJogador" placeholder="Seu nome" style="display:none;">
+    <button onclick="entrar()" style="display:none;" id="btnentrar">Entrar no jogo</button>
+
+    <div id="jogo" style="display:none;">
+        <h3 id="titulojogadores">Jogadores:</h3>
+        <div id="jogadores"></div>
+
+        <h3 id="titulosequencia">Sequência:</h3>
+        <div id="sequencia"></div>
+
+        <input type="text" id="letra" maxlength="1" placeholder="Digite uma letra">
+		
+        <button onclick="lançarLetra()" id="btnjogar">Jogar</button>
+		 
+        <button onclick="interrogar()" id="btninterrogar">❓ Interrogar</button>
+		<br>
+		<input type="text" id="letra1" placeholder="Resposta">
+		<button onclick="lançarLetra1()" id="btnresponder">Responder</button>
+
+        <div id="mensagem"></div>
+    </div>
+
+
+<h3 id="textovalidar">Validação:</h3>
+<div id="validacoes"></div>
+<button onclick="validar(true)" id="btnvalidar">✅ Validar</button>
+<button onclick="validar(false)" id="btnrevogar">❌ Revogar</button>
+  </div>
+  
+  </div>
+
+  <script>
+  /*localStorage.clear();
+  localStorage.setItem("moneymasters", "moneymasters");
+  nivel
+partidas
+meta
+pontos
+modo[facil,normal,dificil]*/
+let primeiravez=1;
+  let niveis=0;
+let partidas=0;
+let meta=0;
+let pontos=0;
+let moedas=0;
+var modo="facil";
+var ja_joguei="";
+var coracoes=0;
+var meu_id="";
+var meu_idcomunidade="";
+var som="ativo";
+var musica="ativo";
+var linguagem="pt";
+var meunome="";
+
+var avatares="avatar1;avatar2;";
+var avatar_selecionado="avatar1";
+
+var fundos="fundo0;";
+var fundos_selecionado="fundo0";
+
+var icones="icone7;";
+var icones_selecionado="icone7";
+
+let abrir_pagina=0;
+
+var musica1= new Audio("musica/musica.mp3");
+musica1.loop = true;
+
+
+  if(abrir_pagina==0){
+  abrir_pagina=1;
+            ja_joguei=localStorage.getItem("memoriaexplosiva_ja_joguei"); 
+			if(ja_joguei==""||ja_joguei==null||ja_joguei=="null"){
+			
+			document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen3').classList.add('active');
+			
+			const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let resultado = '';
+  for (let i = 0; i < 6; i++) {
+    const indice = Math.floor(Math.random() * caracteres.length);
+    resultado += caracteres[indice];
+  }
+localStorage.setItem("meu_id", resultado);
+meu_id=resultado;
+
+for (let i = 0; i < 6; i++) {
+    const indice = Math.floor(Math.random() * 9);
+    meu_idcomunidade += indice;
+  }
+localStorage.setItem("meu_idcomunidade", meu_idcomunidade);
+//console.log(gerarRandom());
+
+			localStorage.setItem("memoriaexplosiva_ja_joguei", "sim");
+			localStorage.setItem("niveis", 0);
+			localStorage.setItem("partidas", 0);
+			localStorage.setItem("meta", 0);
+			localStorage.setItem("pontos", 0);
+			localStorage.setItem("moedas", 0);
+			localStorage.setItem("coracoes", 0);
+			localStorage.setItem("som", "ativo");
+			localStorage.setItem("musica", "ativo");
+			localStorage.setItem("linguagem", "pt");
+			localStorage.setItem("avatares", "avatar1;avatar2;");
+			localStorage.setItem("avatar_selecionado", "avatar1");
+			localStorage.setItem("meunome", "");
+			
+			localStorage.setItem("fundos", "fundo0;");
+			localStorage.setItem("fundos_selecionado", "fundo0");
+			
+			localStorage.setItem("icones", "icone7;");
+			localStorage.setItem("icones_selecionado", "icone7");
+			
+			primeiravez=0;
+			
+			if(musica=="ativo"){
+			document.getElementById("btn_musica").src="icones/btn_musica1.png";
+			tocarMusica();
+			}
+			
+			if(som=="ativo"){document.getElementById("btn_som").src="icones/btn_som1.png";}
+			
+			
+			}else{
+			
+			meu_id=localStorage.getItem("meu_id"); 
+			meu_idcomunidade=localStorage.getItem("meu_idcomunidade"); 
+			coracoes=localStorage.getItem("coracoes"); 
+			
+			icones_selecionado=localStorage.getItem("icones_selecionado"); 
+			icones=localStorage.getItem("icones"); 
+			
+			fundos_selecionado=localStorage.getItem("fundos_selecionado"); 
+			fundos=localStorage.getItem("fundos"); 
+			
+			meunome=localStorage.getItem("meunome"); 
+			
+			avatar_selecionado=localStorage.getItem("avatar_selecionado"); 
+			avatares=localStorage.getItem("avatares"); 
+			moedas=localStorage.getItem("moedas"); 
+			ja_joguei=localStorage.getItem("memoriaexplosiva_ja_joguei"); 
+			niveis=localStorage.getItem("niveis"); 
+			partidas=localStorage.getItem("partidas"); 
+			meta=localStorage.getItem("meta"); 
+			pontos=localStorage.getItem("pontos"); 
+			modo=localStorage.getItem("modo");
+			
+			som=localStorage.getItem("som");
+			musica=localStorage.getItem("musica");
+			linguagem=localStorage.getItem("linguagem");
+			
+			if(musica=="ativo"){
+			document.getElementById("btn_musica").src="icones/btn_musica1.png";
+			//tocarMusica();
+			}
+			if(som=="ativo"){document.getElementById("btn_som").src="icones/btn_som1.png";}
+			
+			}
+			
+			var avataresinativos="avatar3;avatar4;avatar5;avatar6;avatar7;avatar8;avatar9;avatar10;"+
+			"avatar11;avatar12;avatar13;avatar14;avatar15;avatar16;";
+			for(let i=0;i<avataresinativos.split(";").length;i++){if(avataresinativos.split(";")[i]!=""&&avataresinativos.split(";")[i]!="null"&&avataresinativos.split(";")[i]!=null){
+			if(avatares.includes(avataresinativos.split(";")[i]+";")){ 
+			document.getElementById(avataresinativos.split(";")[i].replace("avatar","avatar_")).innerHTML="";
+			}else{
+			document.getElementById(avataresinativos.split(";")[i]).style.opacity="0.5";
+			}
+			}}
+			document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+			
+			var iconesinativos="icone1;icone2;icone3;icone4;icone5;icone6;";
+			for(let i=0;i<iconesinativos.split(";").length;i++){if(iconesinativos.split(";")[i]!=""&&iconesinativos.split(";")[i]!="null"&&iconesinativos.split(";")[i]!=null){
+			if(icones.includes(iconesinativos.split(";")[i]+";")){ 
+			document.getElementById(iconesinativos.split(";")[i].replace("icone","icone_")).innerHTML="";
+			}else{
+			document.getElementById(iconesinativos.split(";")[i]).style.opacity="0.5";
+			}
+			}}
+			document.getElementById(icones_selecionado).style.border="1.5px solid green";
+			
+			
+			
+			var fundosinativos="fundo1;fundo2;fundo3;fundo4;fundo5;fundo6;fundo7;";
+			for(let i=0;i<fundosinativos.split(";").length;i++){if(fundosinativos.split(";")[i]!=""&&fundosinativos.split(";")[i]!="null"&&fundosinativos.split(";")[i]!=null){
+			if(fundos.includes(fundosinativos.split(";")[i]+";")){ 
+			document.getElementById(fundosinativos.split(";")[i].replace("fundo","fundo_")).innerHTML="";
+			}else{
+			document.getElementById(fundosinativos.split(";")[i]).style.opacity="0.5";
+			}
+			}}
+			
+			document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+			if(fundos_selecionado=="fundo0"){document.querySelector('.screen01').style.backgroundImage="url('icones/fundo.jpg')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/fundo.jpg')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/fundo.jpg')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/fundo_dois.png')";}
+else{
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+}
+
+
+
+if(modo=="facil"){document.getElementById("nivel_facil").style.textDecoration="underline";
+	  document.getElementById("nivel_facil").style.color="red";}
+	  else if(modo=="intermedio"){document.getElementById("nivel_intermedio").style.textDecoration="underline";
+	  document.getElementById("nivel_intermedio").style.color="red";}
+	  else if(modo=="profissional"){document.getElementById("nivel_profissional").style.textDecoration="underline";
+	  document.getElementById("nivel_profissional").style.color="red";}
+			
+			chamalinguagem();
+			
+        }
+		
+		function voltarParaScreen5() {
+      document.querySelector('.screen9').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+    }
+	
+	function voltarParaScreen6() {
+      document.querySelector('.screen10').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+    }
+	
+	function irxbola() {
+      document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen9').classList.add('active');
+	    if(modo=="facil"){TAMANHO = 3;ALINHAR = 3;criarTabuleiro();
+		document.querySelector('.div_xbola').style.display = 'flex';document.querySelector('.div_xbola1').style.display = 'none';
+		}else {TAMANHO = 4;ALINHAR = 4;criarTabuleiro1();
+		document.querySelector('.div_xbola1').style.display = 'flex';document.querySelector('.div_xbola').style.display = 'none';}
+	  
+	  //configurarModo();abrir_xbola=0;abrir_xbola=1;
+    }
+	
+	function irstop() {
+      document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen10').classList.add('active');
+    }
+	
+    // Troca da tela 1 para a tela 2
+    setTimeout(() => {
+      document.querySelector('.screen1').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+    }, 5000);
+
+
+document.getElementById("ir_loja").addEventListener("click", () => {
+document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen01').classList.add('active');
+    });
+	
+	document.getElementById("ir_ranking").addEventListener("click", () => {
+	
+	fetch('https://memoriaexplosiva.com/grupos/ler.php?grupo=ranking')
+  .then(res => res.text())
+  .then(txt => {
+  
+   let jogadores = (txt.match(/jogadores\[([^\]]*)\]/) || [,""])[1].split(";").filter(j => j);
+    let pontuacoes = (txt.match(/pontuacao_jogadores\[([^\]]*)\]/) || [,""])[1].split(";").filter(j => j);
+	
+	//ativos_array.join(";") + ";";
+	let indices=jogadores.indexOf(meu_id);
+	let pontuacao=pontos/partidas;
+	
+	if(indices==-1){
+	
+// Agora mapeamos jogadores com pontuações
+const jogadoresComPontuacoes = jogadores.map((nome, indice) => ({
+    nome,
+    pontuacao: pontuacoes[indice] || 0  // se não houver pontuação, assume 0
+}));
+
+// Ordenar em ordem decrescente pela pontuação
+jogadoresComPontuacoes.sort((a, b) => b.pontuacao - a.pontuacao);
+
+var osrankings1='';
+// Exibir o resultado
+jogadoresComPontuacoes.forEach(item => {
+   // console.log(`${item.nome} = ${item.pontuacao}`);
+   osrankings1+='<div class="carousel-item" style="font-size:14px;"><img src="icones/avatar1.png" style="width:20%;" alt="Icone 1" /><span>'+`${item.nome} - ${item.pontuacao}`+'ª</span></div>';	
+});
+document.getElementById("osrankings").innerHTML=osrankings1;
+
+
+	jogadores=jogadores.join(";") + ";"+meu_id+";";
+	pontuacoes=pontuacoes.join(";") + ";"+pontuacao+";";
+	
+	/*jogadores+=meu_id+";";
+	pontuacoes+=pontuacao+";";*/
+	
+	// Recriar a mensagem
+msg =
+  'jogadores[' + jogadores + ']' +
+  'pontuacao_jogadores[' + pontuacoes + ']';
+
+let idComunidade="ranking";
+// Enviar para o servidor
+fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+});
+
+	}else{
+	
+	pontuacoes[indices]=pontuacao;
+	
+	// Agora mapeamos jogadores com pontuações
+const jogadoresComPontuacoes = jogadores.map((nome, indice) => ({
+    nome,
+    pontuacao: pontuacoes[indice] || 0  // se não houver pontuação, assume 0
+}));
+
+// Ordenar em ordem decrescente pela pontuação
+jogadoresComPontuacoes.sort((a, b) => b.pontuacao - a.pontuacao);
+var osrankings1='';
+
+osrankings1+='<div class="carousel-item" style="font-size:14px;"><img src="icones/avatar1.png" style="width:20%;" alt="Icone 1" /><span>Tu '+ meunome+" "+ pontuacoes[indices]+'ª</span></div>';	
+
+// Exibir o resultado
+jogadoresComPontuacoes.forEach(item => {
+   // console.log(`${item.nome} = ${item.pontuacao}`);
+   var nomeencontrado=`${item.nome}`;
+   if(nomeencontrado==meu_id){nomeencontrado="Tu "+meunome+" ";}
+   osrankings1+='<div class="carousel-item" style="font-size:14px;"><img src="icones/avatar1.png" style="width:20%;" alt="Icone 1" /><span>'+nomeencontrado+` - ${item.pontuacao}`+'ª</span></div>';	
+});
+document.getElementById("osrankings").innerHTML=osrankings1;
+
+	jogadores=jogadores.join(";") + ";";
+	pontuacoes=pontuacoes.join(";") + ";";
+	// Recriar a mensagem
+msg =
+  'jogadores[' + jogadores + ']' +
+  'pontuacao_jogadores[' + pontuacoes + ']';
+
+let idComunidade="ranking";
+// Enviar para o servidor
+fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+});
+	
+	}
+	
+  });
+  
+document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen_perfil').classList.add('active');
+	  document.getElementById("id_comunidade").value="";
+	  
+	  document.getElementById("foto_perfil").src = "icones/" + avatar_selecionado + ".png";
+	  
+	 // document.getElementById("meu_id").innerHTML="id: "+meu_id+"| "+pontos+" Pontos | 0 /200 Nível | "+partidas+" Partidas | "+meta+" Meta";
+	 let percentual=((meta*100)/200);
+	 document.getElementById("meu_id").innerHTML ="id: "+meu_id+' 🏆 '+pontos+'pts '+'🎮 #'+partidas+'<br><div style="width: 50vw; height: 20px; background-color: #666; border-radius: 10px; overflow: hidden; margin: 20px auto;"><div style="height: 100%; width: '+percentual+'%; background-color: #ffc107; border-radius: 10px 0 0 10px; transition: width 0.4s ease;"></div></div>';
+	
+	  document.getElementById("minhas_moedas").innerHTML=moedas+' <img src="icones/moedas.png"/> '+coracoes+' <img src="icones/coracoes.png"/>';
+	  document.getElementById("meu_idcomunidade").innerHTML="Sua comunidade: "+meu_idcomunidade;
+	  document.getElementById('nome_perfil').value=meunome;
+	  const nome = document.getElementById('nome_perfil').value;
+    const formData = new URLSearchParams();
+    formData.append("nome", nome);
+    formData.append("identidade", meu_id);
+    formData.append("partidas", partidas);
+    formData.append("meta", meta);
+    formData.append("pontos", pontos);
+    formData.append("moedas", moedas);
+    formData.append("coracoes", coracoes);
+    formData.append("avatares", avatares);
+    formData.append("avatar_selecionado", avatar_selecionado);
+    formData.append("fundos", fundos);
+    formData.append("fundo_selecionado", fundos_selecionado);
+    formData.append("icones", icones);
+    formData.append("icone_selecionado", icones_selecionado);
+    formData.append("comunidade", meu_idcomunidade);
+
+    fetch("https://memoriaexplosiva.com/salvar_perfil.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString()
+    })
+    .then(response => response.text())
+    .then(data => {
+       // alert("Servidor: " + data);
+	   
+    })
+    .catch(error => {
+       // console.error("Erro:", error);
+    });
+	
+	
+	});
+	
+	
+	document.querySelector(".top-left-screen01").addEventListener("click", () => {
+document.querySelector('.screen01').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+    });
+	
+	document.querySelector(".top-left-screen_perfil").addEventListener("click", () => {
+document.querySelector('.screen_perfil').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+	  
+	  const nome = document.getElementById('nome_perfil').value;
+	  meunome=nome;
+	  localStorage.setItem("meunome", meunome);
+    const formData = new URLSearchParams();
+    formData.append("nome", nome);
+    formData.append("identidade", meu_id);
+    formData.append("partidas", partidas);
+    formData.append("meta", meta);
+    formData.append("pontos", pontos);
+    formData.append("moedas", moedas);
+    formData.append("coracoes", coracoes);
+    formData.append("avatares", avatares);
+    formData.append("avatar_selecionado", avatar_selecionado);
+    formData.append("fundos", fundos);
+    formData.append("fundo_selecionado", fundos_selecionado);
+    formData.append("icones", icones);
+    formData.append("icone_selecionado", icones_selecionado);
+    formData.append("comunidade", meu_idcomunidade);
+
+    fetch("https://memoriaexplosiva.com/salvar_perfil.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: formData.toString()
+    })
+    .then(response => response.text())
+    .then(data => {
+       // alert("Servidor: " + data);
+    })
+    .catch(error => {
+       // console.error("Erro:", error);
+    });
+	
+	
+    });
+	
+	document.getElementById("btn_som").addEventListener("click", () => {
+if(som=="ativo"){
+			document.getElementById("btn_som").src="icones/btn_som.png";
+			som="inativo";
+			localStorage.setItem("som", "inativo");}else{
+			document.getElementById("btn_som").src="icones/btn_som1.png";
+			som="ativo";
+			localStorage.setItem("som", "ativo");}
+			
+			
+    });
+
+document.getElementById("btn_musica").addEventListener("click", () => {
+if(musica=="ativo"){
+			document.getElementById("btn_musica").src="icones/btn_musica.png";
+			pausarMusica();
+			musica="inativo";
+			localStorage.setItem("musica", "inativo");}else{
+			document.getElementById("btn_musica").src="icones/btn_musica1.png";
+			tocarMusica();
+			musica="ativo";
+			localStorage.setItem("musica", "ativo");}
+    });
+	
+
+document.getElementById("nivel_facil").addEventListener("click", () => {
+      document.getElementById("nivel_facil").style.textDecoration="underline";
+	  document.getElementById("nivel_facil").style.color="red";
+	  
+	  document.getElementById("nivel_intermedio").style.textDecoration="none";
+	  document.getElementById("nivel_intermedio").style.color="white";
+	  
+	  document.getElementById("nivel_profissional").style.textDecoration="none";
+	  document.getElementById("nivel_profissional").style.color="white";
+	  modo="facil";
+	  localStorage.setItem("modo", "facil");
+    });
+	
+	document.getElementById("nivel_intermedio").addEventListener("click", () => {
+      document.getElementById("nivel_facil").style.textDecoration="none";
+	  document.getElementById("nivel_facil").style.color="white";
+	  
+	  document.getElementById("nivel_intermedio").style.textDecoration="underline";
+	  document.getElementById("nivel_intermedio").style.color="red";
+	  
+	  document.getElementById("nivel_profissional").style.textDecoration="none";
+	  document.getElementById("nivel_profissional").style.color="white";
+	  
+	  modo="intermedio";
+	  localStorage.setItem("modo", "intermedio");
+	  
+    });
+	
+	document.getElementById("nivel_profissional").addEventListener("click", () => {
+      document.getElementById("nivel_facil").style.textDecoration="none";
+	  document.getElementById("nivel_facil").style.color="white";
+	  
+	  document.getElementById("nivel_intermedio").style.textDecoration="none";
+	  document.getElementById("nivel_intermedio").style.color="white";
+	  
+	  document.getElementById("nivel_profissional").style.textDecoration="underline";
+	  document.getElementById("nivel_profissional").style.color="red";
+	  
+	  modo="profissional";
+	  localStorage.setItem("modo", "profissional");
+	  
+    });
+	
+	
+    // Clique no botão para abrir a tela 3
+    document.getElementById("btnToScreen3").addEventListener("click", () => {
+      document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen3').classList.add('active');
+    });
+
+    // Opcional: voltar da tela 3 para tela 2
+    document.querySelector('.top-left-screen3').addEventListener("click", () => {
+      document.querySelector('.screen3').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+	  if(primeiravez==0){window.location="tutorial_memoria.html";}
+    });
+	
+	 document.querySelector('.top-left-screen4').addEventListener("click", () => {
+      document.querySelector('.screen4').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+    });
+	
+	document.querySelector('.top-left-screen5').addEventListener("click", () => {
+      document.querySelector('.screen5').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+    });
+	
+	document.querySelector('.center-image').addEventListener("click", () => {
+      document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen5').classList.add('active');
+    });
+	
+	document.getElementById("btn_modo").addEventListener("click", () => {
+      document.querySelector('.screen2').classList.remove('active');
+      document.querySelector('.screen4').classList.add('active');
+    });
+	
+	
+	document.querySelector('.top-img').addEventListener("click", () => {
+	//document.querySelector('.top-img').src = 'icones/btn_som1.png';
+	//document.querySelector('#meuTexto').style.textDecoration = 'underline';
+    });
+	
+	
+	/*partida com a máquina*/
+	 function voltarParaScreen2() {
+      document.querySelector('.screen6').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+	  comecou=0;
+    }
+	
+	  document.getElementById("jogar_maquina").addEventListener("click", () => {
+	  verIcone();
+	   time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	cronometra();
+    document.querySelector('.screen5').classList.remove('active');
+    document.querySelector('.screen6').classList.add('active');
+	//document.querySelector('.top-title').innerHTML=niveis+"/200 Nível | "+partidas+" Partidas | <br>"+meta+" Meta | "+pontos+" Pontos | "+pontuacao+" Acertos";
+	partidas++;
+	cor_escolhida="";
+estagio=0;
+quantas_cores=4;
+array_sequencia="";
+indice_cor=0;
+minha_escolha=0;
+pontuacao=0;
+perdeu=0;
+	localStorage.setItem("partidas", partidas);
+	if(modo=="facil"){estagio=0;quantas_cores=4;}
+if(modo=="intermedio"){estagio=0;quantas_cores=6;}
+if(modo=="profissional"){estagio=0;quantas_cores=16;}
+
+let percentual=((pontuacao*100)/meta); 
+if(meta==0){percentual=0;}
+	document.querySelector('.top-title').innerHTML='🎮 #'+partidas+' 🏆 '+pontos+'pts <br><div style="width: 50vw; height: 20px; background-color: #666; border-radius: 10px; overflow: hidden; margin: 20px auto;"><div style="height: 100%; width: '+percentual+'%; background-color: #ffc107; border-radius: 10px 0 0 10px; transition: width 0.4s ease;"></div></div>';
+	
+	joga();
+  });
+
+
+var cor_escolhida="";
+var nivel="facil";
+var estagio=0;
+var quantas_cores=4;
+var array_sequencia="";
+let indice_cor=0;
+let minha_escolha=0;
+let pontuacao=0;
+let perdeu=0;
+function joga(){
+document.getElementById("a1").style.opacity="0";document.getElementById("a2").style.opacity="0";
+document.getElementById("a3").style.opacity="0";document.getElementById("a4").style.opacity="0";
+document.getElementById("a5").style.opacity="0";document.getElementById("a6").style.opacity="0";
+document.getElementById("a7").style.opacity="0";document.getElementById("a8").style.opacity="0";
+document.getElementById("a9").style.opacity="0";document.getElementById("a10").style.opacity="0";
+document.getElementById("a11").style.opacity="0";document.getElementById("a12").style.opacity="0";
+document.getElementById("a13").style.opacity="0";document.getElementById("a14").style.opacity="0";
+document.getElementById("a15").style.opacity="0";document.getElementById("a16").style.opacity="0";
+document.getElementById("a17").style.opacity="0";document.getElementById("a18").style.opacity="0";
+document.getElementById("a19").style.opacity="0";document.getElementById("a20").style.opacity="0";
+marcarCores();
+
+setTimeout(() => {jogando();}, 1000);
+}
+
+function marcarCores(){
+for(let i=1;i<quantas_cores+1;i++){
+document.getElementById("a"+i).style.opacity="1";document.getElementById("a"+i).style.cursor="pointer";
+}
+}
+
+function jogando(){
+let randomInt = Math.floor(Math.random() * quantas_cores);
+if(randomInt==0){randomInt=1;}
+cor_escolhida="a"+randomInt;
+document.getElementById(cor_escolhida).style.opacity="0";
+if(som=="ativo"){
+  var musica2= new Audio("musica/toque.wav");
+musica2.loop = false;
+musica2.play();}
+array_sequencia+=cor_escolhida+";";
+setTimeout(() => {document.getElementById(cor_escolhida).style.opacity="1";}, 500);
+}
+
+
+document.getElementById("a1").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a1"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a1;";jogando();}}
+});
+
+document.getElementById("a2").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a2"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a2;";jogando();}}
+});
+
+document.getElementById("a3").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a3"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a3;";jogando();}}
+});
+
+document.getElementById("a4").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a4"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a4;";jogando();}}
+});
+
+
+document.getElementById("a5").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a5"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a5;";jogando();}}
+});
+
+document.getElementById("a6").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a6"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a6;";jogando();}}
+});
+
+document.getElementById("a7").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a7"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a7;";jogando();}}
+});
+
+document.getElementById("a8").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a8"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a8;";jogando();}}
+});
+
+
+document.getElementById("a9").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a9"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a9;";jogando();}}
+});
+
+document.getElementById("a10").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a10"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a10;";jogando();}}
+});
+
+document.getElementById("a11").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a11"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a11;";jogando();}}
+});
+
+document.getElementById("a12").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a12"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a12;";jogando();}}
+});
+
+
+
+document.getElementById("a13").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a13"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a13;";jogando();}}
+});
+
+document.getElementById("a14").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a14"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a14;";jogando();}}
+});
+
+document.getElementById("a15").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a15"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a15;";jogando();}}
+});
+
+document.getElementById("a16").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a16"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a16;";jogando();}}
+});
+
+
+document.getElementById("a17").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a17"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a17;";jogando();}}
+});
+
+document.getElementById("a18").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a18"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a18;";jogando();}}
+});
+
+document.getElementById("a19").addEventListener("click", () => {
+if(perdeu==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+if(minha_escolha==0){if(array_sequencia.split(";")[indice_cor]=="a19"){pula_vitoria();}else{pula_derrota();}}
+else{minha_escolha=0;array_sequencia+="a19;";jogando();}}
+});
+
+function pula_vitoria(){
+/*time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();*/
+indice_cor++;
+if(array_sequencia.split(";").length==indice_cor+1){
+pontuacao++;minha_escolha=1;indice_cor=0;
+//document.querySelector('.top-title').innerHTML=niveis+"/200 Nível | "+partidas+" Partidas | <br>"+meta+" Meta | "+pontos+" Pontos | "+pontuacao+" Acertos";
+let percentual=((pontuacao*100)/meta); 
+if(meta==0){percentual=0;}
+	document.querySelector('.top-title').innerHTML='🎮 #'+partidas+' 🏆 '+pontos+'pts <br><div style="width: 50vw; height: 20px; background-color: #666; border-radius: 10px; overflow: hidden; margin: 20px auto;"><div style="height: 100%; width: '+percentual+'%; background-color: #ffc107; border-radius: 10px 0 0 10px; transition: width 0.4s ease;"></div></div>';
+	
+	if(meta<pontuacao){
+meta=pontuacao;
+localStorage.setItem("meta", pontuacao);
+//document.querySelector('.top-title').innerHTML=niveis+"/200 Nível | "+partidas+" Partidas | <br>"+meta+" Meta | "+pontos+" Pontos | "+pontuacao+" Acertos";
+let percentual=((pontuacao*100)/meta); 
+if(meta==0){percentual=0;}
+	document.querySelector('.top-title').innerHTML='🎮 #'+partidas+' 🏆 '+pontos+'pts <br><div style="width: 50vw; height: 20px; background-color: #666; border-radius: 10px; overflow: hidden; margin: 20px auto;"><div style="height: 100%; width: '+percentual+'%; background-color: #ffc107; border-radius: 10px 0 0 10px; transition: width 0.4s ease;"></div></div>';
+	
+}
+pontos++;
+localStorage.setItem("pontos", pontos);
+estagio++;
+moedas++;
+localStorage.setItem("moedas", moedas);
+}
+
+if(estagio>4){
+estagio=0;
+coracoes++;
+localStorage.setItem("coracoes", coracoes);
+if(som=="ativo"){
+  var musica2= new Audio("musica/vitoria.wav");
+musica2.loop = false;
+musica2.play();}
+if(modo=="facil"){estagio=0;quantas_cores=6;marcarCores();}
+if(modo=="intermedio"){estagio=0;quantas_cores=10;marcarCores();}
+if(modo=="profissional"){estagio=0;quantas_cores=19;marcarCores();}
+}
+//console.log(array_sequencia);
+} 
+
+function pula_derrota(){
+perdeu=1;
+if(som=="ativo"){
+  var musica2= new Audio("musica/derrota.wav");
+musica2.loop = false;
+musica2.play();}
+for(let i=1;i<20;i++){
+document.getElementById("a"+i).style.opacity="0";
+document.getElementById("a20").style.opacity="1";
+}
+}
+//pôr cronometro facil=5 segundos por click, normal=2 segundos por click, dificil = 1 segundo por click
+//aumenta o numero de cores por cada 10 acertos
+/*fim da partida com a máquina*/
+
+
+
+
+/*partida com outra pessoa*/
+let pontuacao_jogador_1=0;
+let pontuacao_jogador_2=0;
+let minhavez=0;
+var array_sequencia1="";
+var array_sequencia2="";
+	 function voltarParaScreen3() {
+      document.querySelector('.screen7').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+	  comecou=0;
+    }
+	
+	  document.getElementById("jogar_dois").addEventListener("click", () => {
+	  verIcone();
+	   time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	cronometra();
+    document.querySelector('.screen5').classList.remove('active');
+    document.querySelector('.screen7').classList.add('active');
+	pontuacao_jogador_1=0;
+	pontuacao_jogador_2=0;
+	indice_cor=0;
+	array_sequencia1="";
+	array_sequencia2="";
+	minhavez=0;
+	minha_escolha=1;
+	document.querySelector('#jogador_1').innerHTML=pontuacao_jogador_1+" Pontos";
+	document.querySelector('#jogador_2').innerHTML=pontuacao_jogador_2+" Pontos";
+perdeu=0;
+for(let i=1;i<9;i++){
+document.getElementById("aaa"+i).style.opacity="1";
+document.getElementById("aa"+i).style.opacity="1";
+}
+  });
+  
+  document.getElementById("aaa1").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa1"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa1;";array_sequencia2+="aa1;";
+document.getElementById("aa1").style.opacity="0";
+setTimeout(() => {document.getElementById("aa1").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa1").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa1"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa1;";array_sequencia2+="aa1;";
+document.getElementById("aaa1").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa1").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aaa2").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa2"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa2;";array_sequencia2+="aa2;";
+document.getElementById("aa2").style.opacity="0";
+setTimeout(() => {document.getElementById("aa2").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa2").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa2"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa2;";array_sequencia2+="aa2;";
+document.getElementById("aaa2").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa2").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+
+document.getElementById("aaa3").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa3"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa3;";array_sequencia2+="aa3;";
+document.getElementById("aa3").style.opacity="0";
+setTimeout(() => {document.getElementById("aa3").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa3").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa3"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa3;";array_sequencia2+="aa3;";
+document.getElementById("aaa3").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa3").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aaa4").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa4"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa4;";array_sequencia2+="aa4;";
+document.getElementById("aa4").style.opacity="0";
+setTimeout(() => {document.getElementById("aa4").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa4").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa4"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa4;";array_sequencia2+="aa4;";
+document.getElementById("aaa4").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa4").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+
+document.getElementById("aaa5").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa5"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa5;";array_sequencia2+="aa5;";
+document.getElementById("aa5").style.opacity="0";
+setTimeout(() => {document.getElementById("aa5").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa5").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa5"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa5;";array_sequencia2+="aa5;";
+document.getElementById("aaa5").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa5").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+
+
+document.getElementById("aaa6").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa6"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa6;";array_sequencia2+="aa6;";
+document.getElementById("aa6").style.opacity="0";
+setTimeout(() => {document.getElementById("aa6").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa6").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa6"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa6";array_sequencia2+="aa6;";
+document.getElementById("aaa6").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa6").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aaa7").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa7"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa7;";array_sequencia2+="aa7;";
+document.getElementById("aa7").style.opacity="0";
+setTimeout(() => {document.getElementById("aa7").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa7").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa7"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa7";array_sequencia2+="aa7;";
+document.getElementById("aaa7").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa7").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+
+document.getElementById("aaa8").addEventListener("click", () => {
+if(perdeu==0&&minhavez==0){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia1.split(";")[indice_cor]=="aaa8"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa8;";array_sequencia2+="aa8;";
+document.getElementById("aa8").style.opacity="0";
+setTimeout(() => {document.getElementById("aa8").style.opacity="1";}, 500);
+minhavez=1;
+pula_vitoria1();
+}}
+});
+
+
+document.getElementById("aa8").addEventListener("click", () => {
+if(perdeu==0&&minhavez==1){
+time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+if(minha_escolha==0){if(array_sequencia2.split(";")[indice_cor]=="aa8"){pula_vitoria1();}else{pula_derrota1();}}
+else{minha_escolha=0;array_sequencia1+="aaa8;";array_sequencia2+="aa8;";
+document.getElementById("aaa8").style.opacity="0";
+setTimeout(() => {document.getElementById("aaa8").style.opacity="1";}, 500);
+minhavez=0;
+pula_vitoria1();
+}}
+});
+
+
+function pula_vitoria1(){
+/*time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();*/
+indice_cor++;
+
+if(minhavez==1){
+if(array_sequencia1.split(";").length==indice_cor+1){
+minha_escolha=1;indice_cor=0;
+pontuacao_jogador_2++;
+document.querySelector('#jogador_2').innerHTML=pontuacao_jogador_2+" Pontos";}}
+
+if(minhavez==0){
+if(array_sequencia2.split(";").length==indice_cor+1){
+minha_escolha=1;indice_cor=0;
+pontuacao_jogador_1++;
+document.querySelector('#jogador_1').innerHTML=pontuacao_jogador_1+" Pontos";}}
+} 
+
+function pula_derrota1(){
+
+if(minhavez==1){
+pontuacao_jogador_1++;
+document.querySelector('#jogador_1').innerHTML=pontuacao_jogador_1+" Pontos";}
+
+if(minhavez==0){
+pontuacao_jogador_2++;
+document.querySelector('#jogador_2').innerHTML=pontuacao_jogador_2+" Pontos";}
+
+perdeu=1;
+for(let i=1;i<9;i++){
+document.getElementById("aaa"+i).style.opacity="0";
+document.getElementById("aa"+i).style.opacity="0";
+}
+}
+// style="text-decoration: underline;"
+
+function tocarMusica() {
+  musica1.play();
+}
+
+function pausarMusica() {
+musica1.currentTime = 0;
+musica1.pause();
+}
+
+let musicaTocou = 0;
+
+document.addEventListener("click", () => {
+chamalinguagem();
+  if (musicaTocou==0&&musica=="ativo") {
+  musicaTocou=1;
+    tocarMusica();
+  }
+  
+  if(som=="ativo"){
+  var musica2= new Audio("musica/toque.wav");
+musica2.loop = false;
+musica2.play();}
+});
+
+
+document.getElementById("avatar1").addEventListener("click", () => {
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar1";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+});
+
+
+document.getElementById("avatar2").addEventListener("click", () => {
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar2";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+});
+
+document.getElementById("avatar3").addEventListener("click", () => {
+if(avatares.includes("avatar3;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar3";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=5){
+moedas=moedas-5;
+avatares+="avatar3;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar3";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+
+document.getElementById("avatar4").addEventListener("click", () => {
+if(avatares.includes("avatar4;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar4";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=8){
+moedas=moedas-8;
+avatares+="avatar4;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar4";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar5").addEventListener("click", () => {
+if(avatares.includes("avatar5;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar5";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=20){
+moedas=moedas-20;
+avatares+="avatar5;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar5";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar6").addEventListener("click", () => {
+if(avatares.includes("avatar6;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar6";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=30){
+moedas=moedas-30;
+avatares+="avatar6;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar6";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+document.getElementById("avatar7").addEventListener("click", () => {
+if(avatares.includes("avatar7;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar7";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=50){
+moedas=moedas-50;
+avatares+="avatar7;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar7";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+document.getElementById("avatar8").addEventListener("click", () => {
+if(avatares.includes("avatar8;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar8";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=90){
+moedas=moedas-90;
+avatares+="avatar8;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar8";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar9").addEventListener("click", () => {
+if(avatares.includes("avatar9;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar9";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=100){
+moedas=moedas-100;
+avatares+="avatar9;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar9";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar10").addEventListener("click", () => {
+if(avatares.includes("avatar10;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar10";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=120){
+moedas=moedas-120;
+avatares+="avatar10;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar10";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+document.getElementById("avatar11").addEventListener("click", () => {
+if(avatares.includes("avatar11;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar11";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=200){
+moedas=moedas-200;
+avatares+="avatar11;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar11";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+document.getElementById("avatar12").addEventListener("click", () => {
+if(avatares.includes("avatar12;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar12";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=300){
+moedas=moedas-300;
+avatares+="avatar12;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar12";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar13").addEventListener("click", () => {
+if(avatares.includes("avatar13;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar13";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=300){
+moedas=moedas-300;
+avatares+="avatar13;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar13";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar14").addEventListener("click", () => {
+if(avatares.includes("avatar14;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar14";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=500){
+moedas=moedas-500;
+avatares+="avatar14;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar14";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar15").addEventListener("click", () => {
+if(avatares.includes("avatar15;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar15";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=600){
+moedas=moedas-600;
+avatares+="avatar15;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar15";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+document.getElementById("avatar16").addEventListener("click", () => {
+if(avatares.includes("avatar16;")){
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar16";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}
+else{
+if(moedas>=900){
+moedas=moedas-900;
+avatares+="avatar16;";localStorage.setItem("avatares", avatares);
+localStorage.setItem("moedas", moedas);
+document.getElementById(avatar_selecionado).style.border="none";
+avatar_selecionado="avatar16";
+document.getElementById(avatar_selecionado).style.border="1.5px solid green";
+localStorage.setItem("avatar_selecionado", avatar_selecionado);
+}else{
+alert("Não tem moedas suficientes para este avatar!");}}
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("fundo0").addEventListener("click", () => {
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo0";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/fundo.jpg')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/fundo.jpg')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/fundo.jpg')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/fundo_dois.png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/fundo_dois.png')";
+});
+
+
+
+document.getElementById("fundo1").addEventListener("click", () => {
+if(fundos.includes("fundo1;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo1";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=1100){
+moedas=moedas-1100;
+fundos+="fundo1;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo1";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+
+
+
+document.getElementById("fundo2").addEventListener("click", () => {
+if(fundos.includes("fundo2;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo2";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=1100){
+moedas=moedas-1100;
+fundos+="fundo2;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo2";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+
+
+
+document.getElementById("fundo3").addEventListener("click", () => {
+if(fundos.includes("fundo3;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo3";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=1180){
+moedas=moedas-1180;
+fundos+="fundo3;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo3";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+
+
+
+document.getElementById("fundo4").addEventListener("click", () => {
+if(fundos.includes("fundo4;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo4";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=605){
+moedas=moedas-605;
+fundos+="fundo4;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo4";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+
+document.getElementById("fundo5").addEventListener("click", () => {
+if(fundos.includes("fundo5;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo5";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=900){
+moedas=moedas-900;
+fundos+="fundo5;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo5";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("fundo6").addEventListener("click", () => {
+if(fundos.includes("fundo6;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo6";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=918){
+moedas=moedas-918;
+fundos+="fundo6;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo6";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+document.getElementById("fundo7").addEventListener("click", () => {
+if(fundos.includes("fundo7;")){
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo7";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}
+else{
+if(moedas>=1200){
+moedas=moedas-1200;
+fundos+="fundo7;";localStorage.setItem("fundos", fundos);
+localStorage.setItem("moedas", moedas);
+document.getElementById(fundos_selecionado).style.border="none";
+fundos_selecionado="fundo7";
+document.getElementById(fundos_selecionado).style.border="1.5px solid green";
+localStorage.setItem("fundos_selecionado", fundos_selecionado);
+
+
+document.querySelector('.screen01').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen_perfil').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen2').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+document.querySelector('.screen3').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen4').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen5').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen6').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+document.querySelector('.screen7').style.backgroundImage="url('icones/"+fundos_selecionado.replace("fundo","fundo_")+".png')";
+
+
+}else{
+alert("Não tem moedas suficientes para este tema!");}}
+});
+
+
+
+
+
+
+
+
+
+document.getElementById("icone1").addEventListener("click", () => {
+if(icones.includes("icone1;")){
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone1";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}
+else{
+if(moedas>=2){
+moedas=moedas-2;
+icones+="icone1;";localStorage.setItem("icones", icones);
+localStorage.setItem("moedas", moedas);
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone1";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}else{
+alert("Não tem moedas suficientes para este icone!");}}
+
+});
+
+
+document.getElementById("icone2").addEventListener("click", () => {
+if(icones.includes("icone2;")){
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone2";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}
+else{
+if(moedas>=5){
+moedas=moedas-5;
+icones+="icone2;";localStorage.setItem("icones", icones);
+localStorage.setItem("moedas", moedas);
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone2";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}else{
+alert("Não tem moedas suficientes para este icone!");}}
+
+});
+
+
+document.getElementById("icone3").addEventListener("click", () => {
+if(icones.includes("icone3;")){
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone3";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}
+else{
+if(moedas>=10){
+moedas=moedas-10;
+icones+="icone3;";localStorage.setItem("icones", icones);
+localStorage.setItem("moedas", moedas);
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone3";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}else{
+alert("Não tem moedas suficientes para este icone!");}}
+
+});
+
+
+document.getElementById("icone4").addEventListener("click", () => {
+if(icones.includes("icone4;")){
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone4";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}
+else{
+if(moedas>=30){
+moedas=moedas-30;
+icones+="icone4;";localStorage.setItem("icones", icones);
+localStorage.setItem("moedas", moedas);
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone4";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}else{
+alert("Não tem moedas suficientes para este icone!");}}
+
+});
+
+
+document.getElementById("icone5").addEventListener("click", () => {
+if(icones.includes("icone5;")){
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone5";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}
+else{
+if(moedas>=50){
+moedas=moedas-50;
+icones+="icone5;";localStorage.setItem("icones", icones);
+localStorage.setItem("moedas", moedas);
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone5";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}else{
+alert("Não tem moedas suficientes para este icone!");}}
+
+});
+
+
+document.getElementById("icone6").addEventListener("click", () => {
+if(icones.includes("icone6;")){
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone6";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}
+else{
+if(moedas>=100){
+moedas=moedas-100;
+icones+="icone6;";localStorage.setItem("icones", icones);
+localStorage.setItem("moedas", moedas);
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone6";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+}else{
+alert("Não tem moedas suficientes para este icone!");}}
+
+});
+
+document.getElementById("icone7").addEventListener("click", () => {
+document.getElementById(icones_selecionado).style.border="none";
+icones_selecionado="icone7";
+document.getElementById(icones_selecionado).style.border="1.5px solid green";
+localStorage.setItem("icones_selecionado", icones_selecionado);
+
+});
+
+
+
+function verIcone(){
+
+ document.getElementById("aaaa11").src="icones/animal_1.png";
+      document.getElementById("aaaa7").src="icones/animal_2.png";
+      document.getElementById("aaaa8").src="icones/animal_3.png";
+      document.getElementById("aaaa12").src="icones/animal_4.png";
+      document.getElementById("aaaa13").src="icones/animal_5.png";
+      document.getElementById("aaaa5").src="icones/animal_6.png";
+      document.getElementById("aaaa6").src="icones/animal_7.png";
+      document.getElementById("aaaa14").src="icones/animal_8.png";
+	  
+      document.getElementById("aaaa15").src="icones/animal_9.png";
+	  document.getElementById("aaaa1").src="icones/animal_10.png";
+	  document.getElementById("aaaa2").src="icones/animal_11.png";
+      document.getElementById("aaaa16").src="icones/animal_12.png";
+	  
+      document.getElementById("aaaa3").src="icones/animal_14.png";
+	  document.getElementById("aaaa4").src="icones/animal_15.png";
+      document.getElementById("aaaa9").src="icones/animal_18.png";
+      document.getElementById("aaaa10").src="icones/animal_19.png";
+
+if(icones_selecionado=="icone7"){
+console.log("estou aqui"+icones_selecionado);
+	  document.getElementById("a11").src="icones/animal_1.png";
+      document.getElementById("a7").src="icones/animal_2.png";
+      document.getElementById("a8").src="icones/animal_3.png";
+      document.getElementById("a12").src="icones/animal_4.png";
+      document.getElementById("a13").src="icones/animal_5.png";
+      document.getElementById("a5").src="icones/animal_6.png";
+      document.getElementById("a6").src="icones/animal_7.png";
+      document.getElementById("a14").src="icones/animal_8.png";
+	  
+      document.getElementById("a15").src="icones/animal_9.png";
+	  document.getElementById("a1").src="icones/animal_10.png";
+	  document.getElementById("a2").src="icones/animal_11.png";
+      document.getElementById("a16").src="icones/animal_12.png";
+	  
+      document.getElementById("a17").src="icones/animal_13.png";
+      document.getElementById("a3").src="icones/animal_14.png";
+	  document.getElementById("a4").src="icones/animal_15.png";
+      document.getElementById("a18").src="icones/animal_16.png";
+      document.getElementById("a19").src="icones/animal_17.png";
+      document.getElementById("a9").src="icones/animal_18.png";
+      document.getElementById("a10").src="icones/animal_19.png";
+
+	  document.getElementById("aaa1").src="icones/animal_1.png";
+	  document.getElementById("aaa2").src="icones/animal_2.png";
+      document.getElementById("aaa3").src="icones/animal_3.png";
+	  document.getElementById("aaa4").src="icones/animal_4.png";
+	  document.getElementById("aaa5").src="icones/animal_5.png";
+      document.getElementById("aaa6").src="icones/animal_6.png";
+	  document.getElementById("aaa7").src="icones/animal_7.png";
+      document.getElementById("aaa8").src="icones/animal_8.png";
+	  	  
+      document.getElementById("aa1").src="icones/animal_1.png";
+	  document.getElementById("aa2").src="icones/animal_2.png";
+      document.getElementById("aa3").src="icones/animal_3.png";
+	  document.getElementById("aa4").src="icones/animal_4.png";
+	  document.getElementById("aa5").src="icones/animal_5.png";
+      document.getElementById("aa6").src="icones/animal_6.png";
+	  document.getElementById("aa7").src="icones/animal_7.png";
+      document.getElementById("aa8").src="icones/animal_8.png";
+	  
+	  /*document.getElementById("aaaa11").src="icones/animal_1.png";
+      document.getElementById("aaaa7").src="icones/animal_2.png";
+      document.getElementById("aaaa8").src="icones/animal_3.png";
+      document.getElementById("aaaa12").src="icones/animal_4.png";
+      document.getElementById("aaaa13").src="icones/animal_5.png";
+      document.getElementById("aaaa5").src="icones/animal_6.png";
+      document.getElementById("aaaa6").src="icones/animal_7.png";
+      document.getElementById("aaaa14").src="icones/animal_8.png";
+	  
+      document.getElementById("aaaa15").src="icones/animal_9.png";
+	  document.getElementById("aaaa1").src="icones/animal_10.png";
+	  document.getElementById("aaaa2").src="icones/animal_11.png";
+      document.getElementById("aaaa16").src="icones/animal_12.png";
+	  
+      document.getElementById("aaaa3").src="icones/animal_14.png";
+	  document.getElementById("aaaa4").src="icones/animal_15.png";*/
+	  }
+	  
+	  else if(icones_selecionado=="icone6"){
+	  document.getElementById("a11").src="icones/planeta_1.png";
+      document.getElementById("a7").src="icones/planeta_2.png";
+      document.getElementById("a8").src="icones/planeta_3.png";
+      document.getElementById("a12").src="icones/planeta_4.png";
+      document.getElementById("a13").src="icones/planeta_5.png";
+      document.getElementById("a5").src="icones/planeta_6.png";
+      document.getElementById("a6").src="icones/planeta_7.png";
+      document.getElementById("a14").src="icones/planeta_8.png";
+	  
+      document.getElementById("a15").src="icones/planeta_9.png";
+	  document.getElementById("a1").src="icones/planeta_10.png";
+	  document.getElementById("a2").src="icones/planeta_11.png";
+      document.getElementById("a16").src="icones/planeta_12.png";
+	  
+      document.getElementById("a17").src="icones/planeta_13.png";
+      document.getElementById("a3").src="icones/planeta_14.png";
+	  document.getElementById("a4").src="icones/planeta_15.png";
+      document.getElementById("a18").src="icones/planeta_16.png";
+      document.getElementById("a19").src="icones/planeta_17.png";
+      document.getElementById("a9").src="icones/planeta_18.png";
+      document.getElementById("a10").src="icones/planeta_19.png";
+
+	  document.getElementById("aaa1").src="icones/planeta_1.png";
+	  document.getElementById("aaa2").src="icones/planeta_2.png";
+      document.getElementById("aaa3").src="icones/planeta_3.png";
+	  document.getElementById("aaa4").src="icones/planeta_4.png";
+	  document.getElementById("aaa5").src="icones/planeta_5.png";
+      document.getElementById("aaa6").src="icones/planeta_6.png";
+	  document.getElementById("aaa7").src="icones/planeta_7.png";
+      document.getElementById("aaa8").src="icones/planeta_8.png";
+	  	  
+      document.getElementById("aa1").src="icones/planeta_1.png";
+	  document.getElementById("aa2").src="icones/planeta_2.png";
+      document.getElementById("aa3").src="icones/planeta_3.png";
+	  document.getElementById("aa4").src="icones/planeta_4.png";
+	  document.getElementById("aa5").src="icones/planeta_5.png";
+      document.getElementById("aa6").src="icones/planeta_6.png";
+	  document.getElementById("aa7").src="icones/planeta_7.png";
+      document.getElementById("aa8").src="icones/planeta_8.png";
+	  
+	  /*document.getElementById("aaaa11").src="icones/planeta_1.png";
+      document.getElementById("aaaa7").src="icones/planeta_2.png";
+      document.getElementById("aaaa8").src="icones/planeta_3.png";
+      document.getElementById("aaaa12").src="icones/planeta_4.png";
+      document.getElementById("aaaa13").src="icones/planeta_5.png";
+      document.getElementById("aaaa5").src="icones/planeta_6.png";
+      document.getElementById("aaaa6").src="icones/planeta_7.png";
+      document.getElementById("aaaa14").src="icones/planeta_8.png";
+	  
+      document.getElementById("aaaa15").src="icones/planeta_9.png";
+	  document.getElementById("aaaa1").src="icones/planeta_10.png";
+	  document.getElementById("aaaa2").src="icones/planeta_11.png";
+      document.getElementById("aaaa16").src="icones/planeta_12.png";
+	  
+      document.getElementById("aaaa17").src="icones/planeta_13.png";
+      document.getElementById("aaaa3").src="icones/planeta_14.png";
+	  document.getElementById("aaaa4").src="icones/planeta_15.png";
+      document.getElementById("aaaa18").src="icones/planeta_16.png";*/
+	  }
+	  
+	  else if(icones_selecionado=="icone5"){
+	  document.getElementById("a11").src="icones/objeto_1.png";
+      document.getElementById("a7").src="icones/objeto_2.png";
+      document.getElementById("a8").src="icones/objeto_3.png";
+      document.getElementById("a12").src="icones/objeto_4.png";
+      document.getElementById("a13").src="icones/objeto_5.png";
+      document.getElementById("a5").src="icones/objeto_6.png";
+      document.getElementById("a6").src="icones/objeto_7.png";
+      document.getElementById("a14").src="icones/objeto_8.png";
+	  
+      document.getElementById("a15").src="icones/objeto_9.png";
+	  document.getElementById("a1").src="icones/objeto_10.png";
+	  document.getElementById("a2").src="icones/objeto_11.png";
+      document.getElementById("a16").src="icones/objeto_12.png";
+	  
+      document.getElementById("a17").src="icones/objeto_13.png";
+      document.getElementById("a3").src="icones/objeto_14.png";
+	  document.getElementById("a4").src="icones/objeto_15.png";
+      document.getElementById("a18").src="icones/objeto_16.png";
+      document.getElementById("a19").src="icones/objeto_17.png";
+      document.getElementById("a9").src="icones/objeto_18.png";
+      document.getElementById("a10").src="icones/objeto_19.png";
+
+	  document.getElementById("aaa1").src="icones/objeto_1.png";
+	  document.getElementById("aaa2").src="icones/objeto_2.png";
+      document.getElementById("aaa3").src="icones/objeto_3.png";
+	  document.getElementById("aaa4").src="icones/objeto_4.png";
+	  document.getElementById("aaa5").src="icones/objeto_5.png";
+      document.getElementById("aaa6").src="icones/objeto_6.png";
+	  document.getElementById("aaa7").src="icones/objeto_7.png";
+      document.getElementById("aaa8").src="icones/objeto_8.png";
+	  	  
+      document.getElementById("aa1").src="icones/objeto_1.png";
+	  document.getElementById("aa2").src="icones/objeto_2.png";
+      document.getElementById("aa3").src="icones/objeto_3.png";
+	  document.getElementById("aa4").src="icones/objeto_4.png";
+	  document.getElementById("aa5").src="icones/objeto_5.png";
+      document.getElementById("aa6").src="icones/objeto_6.png";
+	  document.getElementById("aa7").src="icones/objeto_7.png";
+      document.getElementById("aa8").src="icones/objeto_8.png";
+	  
+	  /*document.getElementById("aaaa11").src="icones/objeto_1.png";
+      document.getElementById("aaaa7").src="icones/objeto_2.png";
+      document.getElementById("aaaa8").src="icones/objeto_3.png";
+      document.getElementById("aaaa12").src="icones/objeto_4.png";
+      document.getElementById("aaaa13").src="icones/objeto_5.png";
+      document.getElementById("aaaa5").src="icones/objeto_6.png";
+      document.getElementById("aaaa6").src="icones/objeto_7.png";
+      document.getElementById("aaaa14").src="icones/objeto_8.png";
+	  
+      document.getElementById("aaaa15").src="icones/objeto_9.png";
+	  document.getElementById("aaaa1").src="icones/objeto_10.png";
+	  document.getElementById("aaaa2").src="icones/objeto_11.png";
+      document.getElementById("aaaa16").src="icones/objeto_12.png";
+	  
+      document.getElementById("aaaa17").src="icones/objeto_13.png";
+      document.getElementById("aaaa3").src="icones/objeto_14.png";
+	  document.getElementById("aaaa4").src="icones/objeto_15.png";
+      document.getElementById("aaaa18").src="icones/objeto_16.png";*/
+	  }
+	  
+	  else if(icones_selecionado=="icone4"){
+	  
+	  document.getElementById("a11").src="icones/fruta_1.png";
+      document.getElementById("a7").src="icones/fruta_2.png";
+      document.getElementById("a8").src="icones/fruta_3.png";
+      document.getElementById("a12").src="icones/fruta_4.png";
+      document.getElementById("a13").src="icones/fruta_5.png";
+      document.getElementById("a5").src="icones/fruta_6.png";
+      document.getElementById("a6").src="icones/fruta_7.png";
+      document.getElementById("a14").src="icones/fruta_8.png";
+	  
+      document.getElementById("a15").src="icones/fruta_9.png";
+	  document.getElementById("a1").src="icones/fruta_10.png";
+	  document.getElementById("a2").src="icones/fruta_11.png";
+      document.getElementById("a16").src="icones/fruta_12.png";
+	  
+      document.getElementById("a17").src="icones/fruta_13.png";
+      document.getElementById("a3").src="icones/fruta_14.png";
+	  document.getElementById("a4").src="icones/fruta_15.png";
+      document.getElementById("a18").src="icones/fruta_16.png";
+      document.getElementById("a19").src="icones/fruta_17.png";
+      document.getElementById("a9").src="icones/fruta_18.png";
+      document.getElementById("a10").src="icones/fruta_19.png";
+
+	  document.getElementById("aaa1").src="icones/fruta_1.png";
+	  document.getElementById("aaa2").src="icones/fruta_2.png";
+      document.getElementById("aaa3").src="icones/fruta_3.png";
+	  document.getElementById("aaa4").src="icones/fruta_4.png";
+	  document.getElementById("aaa5").src="icones/fruta_5.png";
+      document.getElementById("aaa6").src="icones/fruta_6.png";
+	  document.getElementById("aaa7").src="icones/fruta_7.png";
+      document.getElementById("aaa8").src="icones/fruta_8.png";
+	  	  
+      document.getElementById("aa1").src="icones/fruta_1.png";
+	  document.getElementById("aa2").src="icones/fruta_2.png";
+      document.getElementById("aa3").src="icones/fruta_3.png";
+	  document.getElementById("aa4").src="icones/fruta_4.png";
+	  document.getElementById("aa5").src="icones/fruta_5.png";
+      document.getElementById("aa6").src="icones/fruta_6.png";
+	  document.getElementById("aa7").src="icones/fruta_7.png";
+      document.getElementById("aa8").src="icones/fruta_8.png";
+	  
+	  /*document.getElementById("aaaa11").src="icones/fruta_1.png";
+      document.getElementById("aaaa7").src="icones/fruta_2.png";
+      document.getElementById("aaaa8").src="icones/fruta_3.png";
+      document.getElementById("aaaa12").src="icones/fruta_4.png";
+      document.getElementById("aaaa13").src="icones/fruta_5.png";
+      document.getElementById("aaaa5").src="icones/fruta_6.png";
+      document.getElementById("aaaa6").src="icones/fruta_7.png";
+      document.getElementById("aaaa14").src="icones/fruta_8.png";
+	  
+      document.getElementById("aaaa15").src="icones/fruta_9.png";
+	  document.getElementById("aaaa1").src="icones/fruta_10.png";
+	  document.getElementById("aaaa2").src="icones/fruta_11.png";
+      document.getElementById("aaaa16").src="icones/fruta_12.png";
+	  
+      document.getElementById("aaaa17").src="icones/fruta_13.png";
+      document.getElementById("aaaa3").src="icones/fruta_14.png";
+	  document.getElementById("aaaa4").src="icones/fruta_15.png";
+      document.getElementById("aaaa18").src="icones/fruta_16.png";*/
+	  
+	  }
+	  
+	  else if(icones_selecionado=="icone3"){
+	  
+	  document.getElementById("a11").src="icones/ciencia_1.png";
+      document.getElementById("a7").src="icones/ciencia_2.png";
+      document.getElementById("a8").src="icones/ciencia_3.png";
+      document.getElementById("a12").src="icones/ciencia_4.png";
+      document.getElementById("a13").src="icones/ciencia_5.png";
+      document.getElementById("a5").src="icones/ciencia_6.png";
+      document.getElementById("a6").src="icones/ciencia_7.png";
+      document.getElementById("a14").src="icones/ciencia_8.png";
+	  
+      document.getElementById("a15").src="icones/ciencia_9.png";
+	  document.getElementById("a1").src="icones/ciencia_10.png";
+	  document.getElementById("a2").src="icones/ciencia_11.png";
+      document.getElementById("a16").src="icones/ciencia_12.png";
+	  
+      document.getElementById("a17").src="icones/ciencia_13.png";
+      document.getElementById("a3").src="icones/ciencia_14.png";
+	  document.getElementById("a4").src="icones/ciencia_15.png";
+      document.getElementById("a18").src="icones/ciencia_16.png";
+      document.getElementById("a19").src="icones/ciencia_17.png";
+      document.getElementById("a9").src="icones/ciencia_18.png";
+      document.getElementById("a10").src="icones/ciencia_19.png";
+
+	  document.getElementById("aaa1").src="icones/ciencia_1.png";
+	  document.getElementById("aaa2").src="icones/ciencia_2.png";
+      document.getElementById("aaa3").src="icones/ciencia_3.png";
+	  document.getElementById("aaa4").src="icones/ciencia_4.png";
+	  document.getElementById("aaa5").src="icones/ciencia_5.png";
+      document.getElementById("aaa6").src="icones/ciencia_6.png";
+	  document.getElementById("aaa7").src="icones/ciencia_7.png";
+      document.getElementById("aaa8").src="icones/ciencia_8.png";
+	  	  
+      document.getElementById("aa1").src="icones/ciencia_1.png";
+	  document.getElementById("aa2").src="icones/ciencia_2.png";
+      document.getElementById("aa3").src="icones/ciencia_3.png";
+	  document.getElementById("aa4").src="icones/ciencia_4.png";
+	  document.getElementById("aa5").src="icones/ciencia_5.png";
+      document.getElementById("aa6").src="icones/ciencia_6.png";
+	  document.getElementById("aa7").src="icones/ciencia_7.png";
+      document.getElementById("aa8").src="icones/ciencia_8.png";
+	  
+	 /* document.getElementById("aaaa11").src="icones/ciencia_1.png";
+      document.getElementById("aaaa7").src="icones/ciencia_2.png";
+      document.getElementById("aaaa8").src="icones/ciencia_3.png";
+      document.getElementById("aaaa12").src="icones/ciencia_4.png";
+      document.getElementById("aaaa13").src="icones/ciencia_5.png";
+      document.getElementById("aaaa5").src="icones/ciencia_6.png";
+      document.getElementById("aaaa6").src="icones/ciencia_7.png";
+      document.getElementById("aaaa14").src="icones/ciencia_8.png";
+	  
+      document.getElementById("aaaa15").src="icones/ciencia_9.png";
+	  document.getElementById("aaaa1").src="icones/ciencia_10.png";
+	  document.getElementById("aaaa2").src="icones/ciencia_11.png";
+      document.getElementById("aaaa16").src="icones/ciencia_12.png";
+	  
+      document.getElementById("aaaa17").src="icones/ciencia_13.png";
+      document.getElementById("aaaa3").src="icones/ciencia_14.png";
+	  document.getElementById("aaaa4").src="icones/ciencia_15.png";
+      document.getElementById("aaaa18").src="icones/ciencia_16.png";*/
+	  
+	  }
+	  
+	  else if(icones_selecionado=="icone2"){
+	  document.getElementById("a11").src="icones/avatar1.png";
+      document.getElementById("a7").src="icones/avatar2.png";
+      document.getElementById("a8").src="icones/avatar3.png";
+      document.getElementById("a12").src="icones/avatar4.png";
+      document.getElementById("a13").src="icones/avatar5.png";
+      document.getElementById("a5").src="icones/avatar6.png";
+      document.getElementById("a6").src="icones/avatar7.png";
+      document.getElementById("a14").src="icones/avatar8.png";
+	  
+      document.getElementById("a15").src="icones/avatar9.png";
+	  document.getElementById("a1").src="icones/avatar10.png";
+	  document.getElementById("a2").src="icones/avatar11.png";
+      document.getElementById("a16").src="icones/avatar12.png";
+	  
+      document.getElementById("a17").src="icones/avatar13.png";
+      document.getElementById("a3").src="icones/avatar14.png";
+	  document.getElementById("a4").src="icones/avatar15.png";
+      document.getElementById("a18").src="icones/avatar16.png";
+      document.getElementById("a19").src="icones/avatar17.png";
+      document.getElementById("a9").src="icones/avatar18.png";
+      document.getElementById("a10").src="icones/avatar19.png";
+
+	  document.getElementById("aaa1").src="icones/avatar1.png";
+	  document.getElementById("aaa2").src="icones/avatar2.png";
+      document.getElementById("aaa3").src="icones/avatar3.png";
+	  document.getElementById("aaa4").src="icones/avatar4.png";
+	  document.getElementById("aaa5").src="icones/avatar5.png";
+      document.getElementById("aaa6").src="icones/avatar6.png";
+	  document.getElementById("aaa7").src="icones/avatar7.png";
+      document.getElementById("aaa8").src="icones/avatar8.png";
+	  	  
+      document.getElementById("aa1").src="icones/avatar1.png";
+	  document.getElementById("aa2").src="icones/avatar2.png";
+      document.getElementById("aa3").src="icones/avatar3.png";
+	  document.getElementById("aa4").src="icones/avatar4.png";
+	  document.getElementById("aa5").src="icones/avatar5.png";
+      document.getElementById("aa6").src="icones/avatar6.png";
+	  document.getElementById("aa7").src="icones/avatar7.png";
+      document.getElementById("aa8").src="icones/avatar8.png";
+	  
+	  /*document.getElementById("aaaa11").src="icones/avatar1.png";
+      document.getElementById("aaaa7").src="icones/avatar2.png";
+      document.getElementById("aaaa8").src="icones/avatar3.png";
+      document.getElementById("aaaa12").src="icones/avatar4.png";
+      document.getElementById("aaaa13").src="icones/avatar5.png";
+      document.getElementById("aaaa5").src="icones/avatar6.png";
+      document.getElementById("aaaa6").src="icones/avatar7.png";
+      document.getElementById("aaaa14").src="icones/avatar8.png";
+	  
+      document.getElementById("aaaa15").src="icones/avatar9.png";
+	  document.getElementById("aaaa1").src="icones/avatar10.png";
+	  document.getElementById("aaaa2").src="icones/avatar11.png";
+      document.getElementById("aaaa16").src="icones/avatar12.png";
+	  
+      document.getElementById("aaaa17").src="icones/avatar13.png";
+      document.getElementById("aaaa3").src="icones/avatar14.png";
+	  document.getElementById("aaaa4").src="icones/avatar15.png";
+      document.getElementById("aaaa18").src="icones/avatar16.png";*/
+	  }
+
+else if(icones_selecionado=="icone1"){
+document.getElementById("a11").src="icones/cor_vinho.png";
+document.getElementById("a7").src="icones/cor_azulescuro.png";
+document.getElementById("a8").src="icones/cor_azulmedio.png";
+document.getElementById("a12").src="icones/cor_branco.png";
+document.getElementById("a13").src="icones/cor_castanho.png";
+document.getElementById("a5").src="icones/cor_cinza.png";
+document.getElementById("a6").src="icones/cor_laranja.png";
+document.getElementById("a14").src="icones/cor_lilas.png";
+document.getElementById("a15").src="icones/cor_lilasescuro.png";
+document.getElementById("a1").src="icones/cor_vermelho.png";
+document.getElementById("a2").src="icones/cor_azul.png";
+document.getElementById("a16").src="icones/cor_preto.png";
+document.getElementById("a17").src="icones/cor_rosa.png";
+document.getElementById("a3").src="icones/cor_verde.png";
+document.getElementById("a4").src="icones/cor_amarelo.png";
+document.getElementById("a18").src="icones/cor_verdeclaro.png";
+document.getElementById("a19").src="icones/cor_verdeescuro.png";
+document.getElementById("a9").src="icones/cor_verdemedio.png";
+document.getElementById("a10").src="icones/cor_lilasmedio.png";
+	  
+/*document.getElementById("aaaa11").src="icones/cor_vinho.png";
+document.getElementById("aaaa7").src="icones/cor_azulescuro.png";
+document.getElementById("aaaa8").src="icones/cor_azulmedio.png";
+document.getElementById("aaaa12").src="icones/cor_branco.png";
+document.getElementById("aaaa13").src="icones/cor_castanho.png";
+document.getElementById("aaaa5").src="icones/cor_cinza.png";
+document.getElementById("aaaa6").src="icones/cor_laranja.png";
+document.getElementById("aaaa14").src="icones/cor_lilas.png";
+document.getElementById("aaaa15").src="icones/cor_lilasescuro.png";
+document.getElementById("aaaa1").src="icones/cor_vermelho.png";
+document.getElementById("aaaa2").src="icones/cor_azul.png";
+document.getElementById("aaaa16").src="icones/cor_preto.png";
+document.getElementById("aaaa17").src="icones/cor_rosa.png";
+document.getElementById("aaaa3").src="icones/cor_verde.png";
+document.getElementById("aaaa4").src="icones/cor_amarelo.png";
+document.getElementById("aaaa18").src="icones/cor_verdeclaro.png";*/
+	  
+document.getElementById("aa1").src="icones/cor_vinho.png";
+document.getElementById("aa2").src="icones/cor_azulescuro.png";
+document.getElementById("aa3").src="icones/cor_azulmedio.png";
+document.getElementById("aa4").src="icones/cor_branco.png";
+document.getElementById("aa5").src="icones/cor_castanho.png";
+document.getElementById("aa6").src="icones/cor_cinza.png";
+document.getElementById("aa7").src="icones/cor_laranja.png";
+document.getElementById("aa8").src="icones/cor_lilas.png";
+
+document.getElementById("aaa1").src="icones/cor_vinho.png";
+document.getElementById("aaa2").src="icones/cor_azulescuro.png";
+document.getElementById("aaa3").src="icones/cor_azulmedio.png";
+document.getElementById("aaa4").src="icones/cor_branco.png";
+document.getElementById("aaa5").src="icones/cor_castanho.png";
+document.getElementById("aaa6").src="icones/cor_cinza.png";
+document.getElementById("aaa7").src="icones/cor_laranja.png";
+document.getElementById("aaa8").src="icones/cor_lilas.png";
+}
+}
+
+	
+	let time = 10;
+	function cronometra(){
+	
+	 // segundos iniciais
+const timerElement = document.getElementById("timer");
+const countdown = setInterval(() => {
+  time--;
+  timerElement.textContent = time;
+  
+  if (time <= 0) {
+    clearInterval(countdown);
+    timerElement.textContent = "💥";
+    document.querySelector(".bomb-icon").textContent = "🔥";
+	pula_derrota();pula_derrota1();
+	
+
+  }
+}, 1000);
+
+	}
+	
+	document.getElementById("abrir_comunidade").addEventListener("click", () => {
+	time=10;
+const timerElement = document.getElementById("timer");
+timerElement.textContent = "💣";
+document.querySelector(".bomb-icon").textContent = "";
+	//cronometra();
+	
+	
+pode_cronometrar=1;
+ultimo_array=0;
+cronometra1();
+	
+estagio=0;	
+	document.querySelector('.screen_perfil').classList.remove('active');
+    document.querySelector('.screen8').classList.add('active');
+	
+	document.getElementById("aaaa20").style.opacity="0";
+	for(let i=1;i<17;i++){
+document.getElementById("aaaa"+i).style.opacity="1";
+}
+
+
+const idComunidadeInput = document.getElementById("id_comunidade");
+    if (!idComunidadeInput.value) {
+        idComunidadeInput.value = meu_idcomunidade;
+    }
+    const idComunidade = idComunidadeInput.value;
+	
+fetch('https://memoriaexplosiva.com/grupos/criar_grupo.php?grupo=' + idComunidade);
+  //setInterval(lerMensagens, 1000);
+  
+fetch('https://memoriaexplosiva.com/grupos/ler.php?grupo=' + idComunidade)
+  .then(res => res.text())
+  .then(txt => {
+    let nome_perfil = document.getElementById("nome_perfil").value;
+    let msg = "";
+
+    if (txt === "") {
+      // Criar estrutura completa do zero
+      msg =
+        'nomes[' + nome_perfil + ';]' +
+        'jogadores[' + meu_id + ';]' +
+        'pontuacao_jogadores[0;]' +
+        'vez_de_quem[0]' +
+        'array_sequencia[]' +
+        'jogadores_ativos[' + meu_id + ';]' +
+        'jogadores_inativos[]' +
+        'indice_cor[]';
+    } else {
+      // Verifica se meu_id já está na lista de jogadores
+      let jogadoresMatch = txt.match(/jogadores\[([^\]]*)\]/);
+      let jogadores = jogadoresMatch ? jogadoresMatch[1].split(';').filter(j => j) : [];
+
+      if (!jogadores.includes(meu_id)) {
+        // Extrair dados existentes
+        let nomes = (txt.match(/nomes\[([^\]]*)\]/) || [,""])[1];
+        let pontuacoes = (txt.match(/pontuacao_jogadores\[([^\]]*)\]/) || [,""])[1];
+        let vez = (txt.match(/vez_de_quem\[([^\]]*)\]/) || [,"0"])[1];
+        let sequencia = (txt.match(/array_sequencia\[([^\]]*)\]/) || [,""])[1];
+        let jogadores_ativos = (txt.match(/jogadores_ativos\[([^\]]*)\]/) || [,""])[1];
+        let jogadores_inativos = (txt.match(/jogadores_inativos\[([^\]]*)\]/) || [,""])[1];
+        let indice_cor = (txt.match(/indice_cor\[([^\]]*)\]/) || [,""])[1];
+
+
+document.getElementById("jogadores_ativos").innerHTML=jogadores_ativos;
+	document.getElementById("jogadores_inativos").innerHTML=jogadores_inativos;
+	
+        // Nova mensagem com incrementos
+        msg =
+          'nomes[' + nomes + nome_perfil + ';]' +
+          'jogadores[' + jogadores.join(';') + (jogadores.length > 0 ? ';' : '') + meu_id + ';]' +
+          'pontuacao_jogadores[' + pontuacoes + (pontuacoes && !pontuacoes.endsWith(';') ? ';' : '') + '0;]' +
+          'vez_de_quem[' + vez + ']' +
+          'array_sequencia[' + sequencia + ']' +
+          'jogadores_ativos[' + jogadores_ativos + (jogadores_ativos && !jogadores_ativos.endsWith(';') ? ';' : '') + meu_id + ';]' +
+          'jogadores_inativos[' + jogadores_inativos + ']' +
+          'indice_cor[' + indice_cor + ']';
+      } else {
+        // Jogador já existe, nada a fazer
+        return;
+      }
+    }
+
+    // Envia a nova mensagem atualizada
+    fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+    });
+  });
+
+
+  
+  
+	});
+	
+	document.getElementById("jogar_online").addEventListener("click", () => {
+
+estagio=0;	
+	//document.querySelector('.screen_perfil').classList.remove('active');
+    //document.querySelector('.screen8').classList.add('active');
+	
+	document.getElementById("aaaa20").style.opacity="0";
+	for(let i=1;i<17;i++){
+document.getElementById("aaaa"+i).style.opacity="1";
+}
+
+
+fetch('https://memoriaexplosiva.com/grupos/criar_grupo.php?grupo=online');
+  //setInterval(lerMensagens, 1000);
+  
+fetch('https://memoriaexplosiva.com/grupos/ler.php?grupo=online')
+  .then(res => res.text())
+  .then(txt => {
+    let nome_perfil = document.getElementById("nome_perfil").value;
+    let msg = "";
+
+    if (txt === "") {
+      // Criar estrutura completa do zero
+      msg =
+        'nomes[' + nome_perfil + ';]' +
+        'jogadores[' + meu_id + ';]' +
+        'pontuacao_jogadores[0;]' +
+        'vez_de_quem[0]' +
+        'array_sequencia[]' +
+        'jogadores_ativos[' + meu_id + ';]' +
+        'jogadores_inativos[]' +
+        'indice_cor[]';
+    } else {
+      // Verifica se meu_id já está na lista de jogadores
+      let jogadoresMatch = txt.match(/jogadores\[([^\]]*)\]/);
+      let jogadores = jogadoresMatch ? jogadoresMatch[1].split(';').filter(j => j) : [];
+
+      if (!jogadores.includes(meu_id)) {
+        // Extrair dados existentes
+        let nomes = (txt.match(/nomes\[([^\]]*)\]/) || [,""])[1];
+        let pontuacoes = (txt.match(/pontuacao_jogadores\[([^\]]*)\]/) || [,""])[1];
+        let vez = (txt.match(/vez_de_quem\[([^\]]*)\]/) || [,"0"])[1];
+        let sequencia = (txt.match(/array_sequencia\[([^\]]*)\]/) || [,""])[1];
+        let jogadores_ativos = (txt.match(/jogadores_ativos\[([^\]]*)\]/) || [,""])[1];
+        let jogadores_inativos = (txt.match(/jogadores_inativos\[([^\]]*)\]/) || [,""])[1];
+        let indice_cor = (txt.match(/indice_cor\[([^\]]*)\]/) || [,""])[1];
+
+
+document.getElementById("jogadores_ativos").innerHTML=jogadores_ativos;
+	document.getElementById("jogadores_inativos").innerHTML=jogadores_inativos;
+	
+        // Nova mensagem com incrementos
+        msg =
+          'nomes[' + nomes + nome_perfil + ';]' +
+          'jogadores[' + jogadores.join(';') + (jogadores.length > 0 ? ';' : '') + meu_id + ';]' +
+          'pontuacao_jogadores[' + pontuacoes + (pontuacoes && !pontuacoes.endsWith(';') ? ';' : '') + '0;]' +
+          'vez_de_quem[' + vez + ']' +
+          'array_sequencia[' + sequencia + ']' +
+          'jogadores_ativos[' + jogadores_ativos + (jogadores_ativos && !jogadores_ativos.endsWith(';') ? ';' : '') + meu_id + ';]' +
+          'jogadores_inativos[' + jogadores_inativos + ']' +
+          'indice_cor[' + indice_cor + ']';
+      } else {
+        // Jogador já existe, nada a fazer
+        return;
+      }
+    }
+var idComunidade="online";
+document.getElementById("id_comunidade").value="online";
+    // Envia a nova mensagem atualizada
+    fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+    });
+  });
+
+
+  
+  
+	});
+	
+	function voltarParaScreen4() {
+	
+	pode_cronometrar=0;
+ultimo_array=0;
+	
+	const idComunidadeInput = document.getElementById("id_comunidade");
+    if (!idComunidadeInput.value) {
+        idComunidadeInput.value = meu_idcomunidade;
+    }
+    const idComunidade = idComunidadeInput.value;
+	
+	
+	
+	fetch('https://memoriaexplosiva.com/grupos/ler.php?grupo=' + idComunidade)
+  .then(res => res.text())
+  .then(txt => {
+    let msg = "";
+
+    // Recuperando todos os campos necessários
+    let nomes = (txt.match(/nomes\[([^\]]*)\]/) || [,""])[1];
+    let jogadores = (txt.match(/jogadores\[([^\]]*)\]/) || [,""])[1].split(";").filter(j => j);
+    let pontuacoes = (txt.match(/pontuacao_jogadores\[([^\]]*)\]/) || [,""])[1];
+    let jogadores_ativos = (txt.match(/jogadores_ativos\[([^\]]*)\]/) || [,""])[1];
+    let jogadores_inativos = (txt.match(/jogadores_inativos\[([^\]]*)\]/) || [,""])[1].split(";").filter(j => j);
+    let vez_de_quem = parseInt((txt.match(/vez_de_quem\[([^\]]*)\]/) || [,"0"])[1]);
+    let array_sequencia = (txt.match(/array_sequencia\[([^\]]*)\]/) || [,""])[1].split(";").filter(s => s);
+    let indice_cor = (txt.match(/indice_cor\[([^\]]*)\]/) || [,""])[1];
+	document.getElementById("jogadores_ativos").innerHTML=jogadores_ativos;
+	document.getElementById("jogadores_inativos").innerHTML=jogadores_inativos;
+	
+	document.getElementById("jogadores_ativos").innerHTML=jogadores_ativos;
+	document.getElementById("jogadores_inativos").innerHTML=jogadores_inativos;
+	
+	/*let jogadores_inativos = (txt.match(/jogadores_inativos\[([^\]]*)\]/) || [,""])[1].split(";").filter(j => j);
+    let jogadores = (txt.match(/jogadores\[([^\]]*)\]/) || [,""])[1].split(";").filter(j => j);
+    let vez_de_quem = parseInt((txt.match(/vez_de_quem\[([^\]]*)\]/) || [,"0"])[1]);
+    let array_sequencia = (txt.match(/array_sequencia\[([^\]]*)\]/) || [,""])[1].split(";").filter(s => s);
+    let indice_cor = (txt.match(/indice_cor\[([^\]]*)\]/) || [,""])[1];*/
+
+    let minha_posicao = jogadores.indexOf(meu_id);
+	
+    // Remove jogador atual dos ativos
+let ativos_array = jogadores_ativos.split(";").filter(p => p !== "").map(p => parseInt(p));
+ativos_array.splice(minha_posicao, 1);
+jogadores_ativos = ativos_array.join(";") + ";";
+
+// Adiciona aos inativos se ainda não estiver
+if (!jogadores_inativos.includes(meu_id)) {
+  jogadores_inativos.push(meu_id);
+}
+
+// Corrigir vez de quem joga
+if (vez_de_quem > jogadores.length - 2) { // -1 porque vai remover um jogador
+  vez_de_quem = jogadores.length - 2;
+}
+
+// Remover jogador da pontuação, jogadores e nomes
+let pontuacoes_array = pontuacoes.split(";").filter(p => p !== "").map(p => parseInt(p));
+pontuacoes_array.splice(minha_posicao, 1);
+pontuacoes = pontuacoes_array.join(";") + ";";
+
+jogadores.splice(minha_posicao, 1);
+
+let nomes_array = nomes.split(";").filter(p => p !== "").map(p => parseInt(p));
+nomes_array.splice(minha_posicao, 1);
+nomes = nomes_array.join(";") + ";";
+indice_cor=0;
+
+// Recriar a mensagem
+msg =
+  'nomes[' + nomes + ']' +
+  'jogadores[' + jogadores.join(";") + ';]' +
+  'pontuacao_jogadores[' + pontuacoes + ']' +
+  'vez_de_quem[' + vez_de_quem + ']' +
+  'array_sequencia[]' + // você pode querer passar array_sequencia.join(";") aqui
+  'jogadores_ativos[' + jogadores_ativos + ']' +
+  'jogadores_inativos[' + jogadores_inativos.join(";") + ';]' +
+  'indice_cor[' + indice_cor + ']';
+
+// Enviar para o servidor
+fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+  body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+});
+
+//alert("derrota");
+  });
+	
+  
+	
+      document.querySelector('.screen8').classList.remove('active');
+      document.querySelector('.screen2').classList.add('active');
+	  comecou=0;
+    }
+	
+	
+	document.getElementById("fechar_comunidade").addEventListener("click", () => {
+fetch('https://memoriaexplosiva.com/grupos/finalizar_comunidade.php?identidade=' + meu_idcomunidade)
+  .then(res => res.text())
+  .then(txt => {
+ // console.log("fechou"+txt);
+  });
+	
+	});
+
+
+let oi="0";
+for (let i = 1; i <= 16; i++) {
+ const botao = document.getElementById("aaaa" + i);
+  
+  botao.addEventListener("click", function (event) {
+    const idBotao = event.target.id; // Aqui você sabe qual botão foi clicado
+	oi=idBotao.replace("aaaa","");
+	handleClick();
+    //console.log("Clicou em: " + idBotao);
+
+    // Aqui você executa o código que já tem, podendo usar o idBotao para lógica se quiser
+    //executarAcao(idBotao);
+  });
+}
+
+function handleClick() {
+  const idComunidadeInput = document.getElementById("id_comunidade");
+  if (!idComunidadeInput.value) {
+    idComunidadeInput.value = meu_idcomunidade;
+  }
+  const idComunidade = idComunidadeInput.value;
+
+  fetch('https://memoriaexplosiva.com/grupos/ler.php?grupo=' + idComunidade)
+    .then(res => res.text())
+    .then(txt => {
+      let msg = "";
+
+      let nomes = (txt.match(/nomes\[([^\]]*)\]/) || [, ""])[1];
+      let jogadores = (txt.match(/jogadores\[([^\]]*)\]/) || [, ""])[1].split(";").filter(j => j);
+      let pontuacoes = (txt.match(/pontuacao_jogadores\[([^\]]*)\]/) || [, ""])[1];
+      let jogadores_ativos = (txt.match(/jogadores_ativos\[([^\]]*)\]/) || [, ""])[1];
+      let jogadores_inativos = (txt.match(/jogadores_inativos\[([^\]]*)\]/) || [, ""])[1].split(";").filter(j => j);
+      let vez_de_quem = parseInt((txt.match(/vez_de_quem\[([^\]]*)\]/) || [, "0"])[1]);
+      let array_sequencia = (txt.match(/array_sequencia\[([^\]]*)\]/) || [, ""])[1].split(";").filter(s => s);
+      let indice_cor = (txt.match(/indice_cor\[([^\]]*)\]/) || [, ""])[1];
+
+      document.getElementById("jogadores_ativos").innerHTML = jogadores_ativos;
+      document.getElementById("jogadores_inativos").innerHTML = jogadores_inativos;
+
+      let minha_posicao = jogadores.indexOf(meu_id);
+
+      if (!jogadores_inativos.includes(meu_id) && vez_de_quem === minha_posicao) {
+        if (typeof array_sequencia[indice_cor] !== "undefined") {
+          if (array_sequencia[indice_cor] === oi) {
+            time = 10;
+            document.getElementById("timer").textContent = "💣";
+            document.querySelector(".bomb-icon").textContent = "";
+            moedas++;
+            localStorage.setItem("moedas", moedas);
+
+            indice_cor++;
+            msg =
+              'nomes[' + nomes + ']' +
+              'jogadores[' + jogadores.join(";") + ';]' +
+              'pontuacao_jogadores[' + pontuacoes + ']' +
+              'vez_de_quem[' + vez_de_quem + ']' +
+              'array_sequencia[' + array_sequencia.join(";") + ';]' +
+              'jogadores_ativos[' + jogadores_ativos + ']' +
+              'jogadores_inativos[' + jogadores_inativos.join(";") + ';]' +
+              'indice_cor[' + indice_cor + ']';
+
+            fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+            });
+
+          } else {
+            // DERROTA
+            let ativos_array = jogadores_ativos.split(";").filter(p => p !== "").map(p => parseInt(p));
+            ativos_array.splice(minha_posicao, 1);
+            jogadores_ativos = ativos_array.join(";") + ";";
+
+            if (!jogadores_inativos.includes(meu_id)) {
+              jogadores_inativos.push(meu_id);
+            }
+
+            if (vez_de_quem > jogadores.length - 2) {
+              vez_de_quem = jogadores.length - 2;
+            }
+
+            let pontuacoes_array = pontuacoes.split(";").filter(p => p !== "").map(p => parseInt(p));
+            pontuacoes_array.splice(minha_posicao, 1);
+            pontuacoes = pontuacoes_array.join(";") + ";";
+
+            jogadores.splice(minha_posicao, 1);
+
+            let nomes_array = nomes.split(";").filter(p => p !== "").map(p => parseInt(p));
+            nomes_array.splice(minha_posicao, 1);
+            nomes = nomes_array.join(";") + ";";
+            indice_cor = 0;
+
+            msg =
+              'nomes[' + nomes + ']' +
+              'jogadores[' + jogadores.join(";") + ';]' +
+              'pontuacao_jogadores[' + pontuacoes + ']' +
+              'vez_de_quem[' + vez_de_quem + ']' +
+              'array_sequencia[]' +
+              'jogadores_ativos[' + jogadores_ativos + ']' +
+              'jogadores_inativos[' + jogadores_inativos.join(";") + ';]' +
+              'indice_cor[' + indice_cor + ']';
+
+            fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+            });
+
+            if (som == "ativo") {
+              var musica2 = new Audio("musica/derrota.wav");
+              musica2.loop = false;
+              musica2.play();
+            }
+
+            for (let i = 1; i <= 16; i++) {
+              document.getElementById("aaaa" + i).style.opacity = "0";
+            }
+            document.getElementById("aaaa20").style.opacity = "1";
+
+          }
+        } else {
+          // VITÓRIA PARCIAL
+          time = 10;
+          document.getElementById("timer").textContent = "💣";
+          document.querySelector(".bomb-icon").textContent = "";
+          moedas++;
+          localStorage.setItem("moedas", moedas);
+          estagio++;
+
+          if (estagio > 4) {
+            estagio = 0;
+            coracoes++;
+            localStorage.setItem("coracoes", coracoes);
+            if (som == "ativo") {
+              var musica2 = new Audio("musica/vitoria.wav");
+              musica2.loop = false;
+              musica2.play();
+            }
+          }
+
+          let pontuacoes_array = pontuacoes.split(";").filter(p => p !== "").map(p => parseInt(p));
+
+          if (minha_posicao !== -1) {
+            pontuacoes_array[minha_posicao] += 1;
+          }
+
+          pontuacoes = pontuacoes_array.join(";") + ";";
+          indice_cor = 0;
+          array_sequencia.push(oi);
+
+          vez_de_quem = (vez_de_quem < jogadores.length - 1) ? vez_de_quem + 1 : 0;
+		  
+		  ultimo_array++;
+
+          msg =
+            'nomes[' + nomes + ']' +
+            'jogadores[' + jogadores.join(";") + ';]' +
+            'pontuacao_jogadores[' + pontuacoes + ']' +
+            'vez_de_quem[' + vez_de_quem + ']' +
+            'array_sequencia[' + array_sequencia.join(";") + ';]' +
+            'jogadores_ativos[' + jogadores_ativos + ']' +
+            'jogadores_inativos[' + jogadores_inativos.join(";") + ';]' +
+            'indice_cor[' + indice_cor + ']';
+
+          fetch('https://memoriaexplosiva.com/grupos/escrever.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `grupo=${idComunidade}&mensagem=${encodeURIComponent(msg)}`
+          });
+        }
+      }
+    });
+}
+
+
+let pode_cronometrar=0;
+let tempo=10;
+let ultimo_array=0;
+let oultimo=ultimo_array;
+function cronometra1(){
+
+	if(pode_cronometrar==1){
+const countdown = setInterval(() => {
+
+  tempo=10;
+  
+  const idComunidadeInput = document.getElementById("id_comunidade");
+  if (!idComunidadeInput.value) {
+    idComunidadeInput.value = meu_idcomunidade;
+  }
+  const idComunidade = idComunidadeInput.value;
+
+  fetch('https://memoriaexplosiva.com/grupos/ler.php?grupo=' + idComunidade)
+    .then(res => res.text())
+    .then(txt => {
+let array_sequencia = (txt.match(/array_sequencia\[([^\]]*)\]/) || [, ""])[1].split(";").filter(s => s);
+
+if(ultimo_array<array_sequencia.length){
+document.getElementById("aaaa"+array_sequencia[ultimo_array]).style.opacity="0";
+oultimo=array_sequencia[ultimo_array];
+liga();
+ultimo_array++;
+console.log(ultimo_array+" - "+array_sequencia.length);
+}
+
+});
+
+  if (tempo <= 0) {
+    tempo=10;
+  }
+}, 1000);}
+
+	}
+	
+	
+	function liga(){
+	setTimeout(() => {document.getElementById("aaaa"+oultimo).style.opacity="1";}, 500);
+	}
+	
+	let categoriaAtual = '';
+        let nomeJogador = '';
+        let intervalo;
+
+        function criarCategoria() {
+            categoriaAtual = document.getElementById('categoria').value.trim();
+			//if (!categoriaAtual) return alert('Digite a categoria');
+			if (!categoriaAtual){categoriaAtual=meu_idcomunidade;}
+
+            fetch('https://memoriaexplosiva.com/backend.php', {
+                method: 'POST',
+                body: new URLSearchParams({ action: 'criar', categoria: categoriaAtual })
+            }).then(() => {
+                //alert('Categoria criada ou carregada!');
+                document.getElementById('jogo').style.display = 'block';
+				entrar();
+                atualizar();
+                intervalo = setInterval(atualizar, 2000);
+            });
+        }
+
+        function entrar() {
+            //nomeJogador = document.getElementById('nomeJogador').value.trim();
+			nomeJogador=meu_id;
+            //if (!nomeJogador) return alert('Digite seu nome');
+
+            fetch('https://memoriaexplosiva.com/backend.php', {
+                method: 'POST',
+                body: new URLSearchParams({ action: 'entrar', categoria: categoriaAtual, nome: nomeJogador })
+            }).then(() => atualizar());
+        }
+
+        function atualizar() {
+            fetch(`https://memoriaexplosiva.com/backend.php?categoria=${categoriaAtual}`)
+            .then(res => res.json())
+            .then(data => {
+                let html = '';
+                data.nomes.forEach((n, i) => {
+                    html += `<span class="${i === data.vez ? 'ativo' : ''}"  style="background-color:black;">${n}</span>`;
+                });
+                document.getElementById('jogadores').innerHTML = "Tu="+meunome+" "+meu_id+" - "+html.replace(meu_id,"Tu "+meunome+" "+meu_id);
+                document.getElementById('sequencia').innerText = data.sequencia.join('');
+            });
+        }
+
+        function lançarLetra() {
+            let letra = document.getElementById('letra').value.trim();
+            if (!letra) return alert('Digite uma letra');
+
+            fetch('https://memoriaexplosiva.com/backend.php', {
+                method: 'POST',
+                body: new URLSearchParams({ 
+                    action: 'lancar', 
+                    categoria: categoriaAtual, 
+                    nome: nomeJogador, 
+                    letra 
+                })
+            }).then(() => {
+                document.getElementById('letra').value = '';
+                atualizar();
+            });
+        }
+
+        function interrogar() {
+            fetch('https://memoriaexplosiva.com/backend.php', {
+                method: 'POST',
+                body: new URLSearchParams({ 
+                    action: 'interrogar', 
+                    categoria: categoriaAtual, 
+                    nome: nomeJogador 
+                })
+            }).then(() => atualizar());
+        }
+		
+		
+		
+		
+		function validar(aprovado) {
+    fetch('https://memoriaexplosiva.com/backend.php', {
+        method: 'POST',
+        body: new URLSearchParams({
+            action: 'validar',
+            categoria: categoriaAtual,
+            nome: nomeJogador,
+            aprovado: aprovado ? 1 : 0
+        })
+    }).then(() => atualizar());
+}
+
+function resetar() {
+    if (confirm("Tem certeza que deseja resetar o jogo?")) {
+        fetch('https://memoriaexplosiva.com/backend.php', {
+            method: 'POST',
+            body: new URLSearchParams({
+                action: 'resetar',
+                categoria: categoriaAtual
+            })
+        }).then(() => atualizar());
+    }
+}
+
+function atualizar() {
+    fetch(`https://memoriaexplosiva.com/backend.php?categoria=${categoriaAtual}`)
+    .then(res => res.json())
+    .then(data => {
+        let html = '';
+        data.nomes.forEach((n, i) => {
+            html += `<span class="${i === data.vez ? 'ativo' : ''}" style="background-color:black;">${n}</span>`;
+        });
+        document.getElementById('jogadores').innerHTML = "Tu="+meunome+" "+meu_id+" - "+html.replace(meu_id,"Tu "+meunome+" "+meu_id);
+        document.getElementById('sequencia').innerText = data.sequencia.join('');
+
+        // Validações/interrogações
+        let val = '';
+        if (data.interrogado) {
+            val = `<p>Interrogado: <b>${data.interrogado}</b></p>`;
+            if (data.votos) {
+                val += '<p>Votos:</p>';
+                data.votos.forEach(v => {
+                    val += `<div>${v.nome}: ${v.voto ? '✅' : '❌'}</div>`;
+                });
+            }
+        }
+        document.getElementById('validacoes').innerHTML = val;
+    });
+}
+
+
+ function lançarLetra1() {
+            let letra = document.getElementById('letra1').value.trim();
+            if (!letra) return alert('Digite uma palavra');
+
+            fetch('https://memoriaexplosiva.com/backend.php', {
+                method: 'POST',
+                body: new URLSearchParams({ 
+                    action: 'lancar1', 
+                    categoria: categoriaAtual, 
+                    nome: nomeJogador, 
+                    letra 
+                })
+            }).then(() => {
+                document.getElementById('letra').value = '';
+                atualizar();
+            });
+        }
+		
+		
+		function chamalinguagem(){
+		if(linguagem=="pt"){document.getElementById('pt').style.color="red";document.getElementById('en').style.color="white";
+		document.getElementById('esp').style.color="white";document.getElementById('fr').style.color="white";
+		document.getElementById('ch').style.color="white";
+		
+		
+		document.getElementById("termo").innerHTML="Termos de uso";
+document.getElementById("nivel_facil").innerHTML="INICIANTE";
+document.getElementById("nivel_intermedio").innerHTML="INTERMÉDIO";
+document.getElementById("nivel_profissional").innerHTML="PROFISSIONAL";
+let jogador_1=document.getElementById("jogador_1").innerHTML;
+jogador_1=jogador_1.replace("Pontos","Pontos");
+let jogador_2=document.getElementById("jogador_2").innerHTML;
+jogador_2=jogador_2.replace("Pontos","Pontos");
+let status1=document.getElementById("status1").innerHTML;
+status1=status1.replace("Jogador","Jogador");
+let status=document.getElementById("status").innerHTML;
+status=status.replace("Jogador","Jogador");
+let titulojogadores=document.getElementById("titulojogadores").innerHTML;
+titulojogadores=titulojogadores.replace("Jogadores","Jogadores");
+let titulosequencia=document.getElementById("titulosequencia").innerHTML;
+titulosequencia=titulosequencia.replace("Sequência","Sequência");
+let textovalidar=document.getElementById("textovalidar").innerHTML;
+textovalidar=textovalidar.replace("Validação","Validação");
+document.getElementById("btnjogar").innerHTML="Jogar";
+document.getElementById("btninterrogar").innerHTML="❓ Interrogar";
+document.getElementById("btnresponder").innerHTML="Responder";
+document.getElementById("btnvalidar").innerHTML="✅ Validar";
+document.getElementById("btnrevogar").innerHTML="❌ Revogar";
+document.getElementById("nome_perfil").placeholder="Nome de perfil";
+document.getElementById("nome_perfil").placeholder="Nome de perfil";
+document.getElementById("id_comunidade").placeholder="Id da comunidade";
+document.getElementById("categoria").placeholder="Id do jogo";
+document.getElementById("letra1").placeholder="Resposta";
+document.getElementById("letra").placeholder="Digite uma letra";
+document.getElementById("titulocomunidade").innerHTML="Comunidade";
+let meu_idcomunidades=document.getElementById("meu_idcomunidade").innerHTML;
+meu_idcomunidades=meu_idcomunidades.replace("Sua comunidade","Sua comunidade");
+document.getElementById("avatar").innerHTML="Avatar";
+document.getElementById("tema").innerHTML="Tema";
+document.getElementById("icones").innerHTML="Icones";}
+		
+		if(linguagem=="en"){document.getElementById('pt').style.color="white";document.getElementById('en').style.color="red";
+		document.getElementById('esp').style.color="white";document.getElementById('fr').style.color="white";
+		document.getElementById('ch').style.color="white";
+		
+		document.getElementById("termo").innerHTML="Terms of Use";
+document.getElementById("nivel_facil").innerHTML="Beginner";
+document.getElementById("nivel_intermedio").innerHTML="Intermediate";
+document.getElementById("nivel_profissional").innerHTML="Professional";
+let titulojogo=document.getElementById("titulojogo").innerHTML;
+titulojogo=titulojogo.replace("Nível","Level").replace("Partidas","Matches").replace("Meta","Target").replace("Pontos","Points");
+let jogador_1=document.getElementById("jogador_1").innerHTML;
+jogador_1=jogador_1.replace("Pontos","Points");
+let jogador_2=document.getElementById("jogador_2").innerHTML;
+jogador_2=jogador_2.replace("Pontos","Points");
+let status1=document.getElementById("status1").innerHTML;
+status1=status1.replace("Jogador","Player");
+let status=document.getElementById("status").innerHTML;
+status=status.replace("Jogador","Player");
+let titulojogadores=document.getElementById("titulojogadores").innerHTML;
+titulojogadores=titulojogadores.replace("Jogadores","Players");
+let titulosequencia=document.getElementById("titulosequencia").innerHTML;
+titulosequencia=titulosequencia.replace("Sequência","Sequence");
+let textovalidar=document.getElementById("textovalidar").innerHTML;
+textovalidar=textovalidar.replace("Validação","Validation");
+document.getElementById("btnjogar").innerHTML="Play";
+document.getElementById("btninterrogar").innerHTML="❓ Interrogate";
+document.getElementById("btnresponder").innerHTML="Answer";
+document.getElementById("btnvalidar").innerHTML="✅ Validate";
+document.getElementById("btnrevogar").innerHTML="❌ Revoke";
+document.getElementById("nome_perfil").placeholder="Profile name";
+document.getElementById("nome_perfil").placeholder="Profile name";
+document.getElementById("id_comunidade").placeholder="Community ID";
+document.getElementById("categoria").placeholder="Game ID";
+document.getElementById("letra1").placeholder="Answer";
+document.getElementById("letra").placeholder="Enter a letter";
+document.getElementById("titulocomunidade").innerHTML="Community";
+let meu_idcomunidades=document.getElementById("meu_idcomunidade").innerHTML;
+meu_idcomunidades=meu_idcomunidades.replace("Sua comunidade","Your community");
+let meu_ids=document.getElementById("meu_id").innerHTML;
+meu_ids=meu_ids.replace("Nível","Level").replace("Partidas","Matches").replace("Meta","Target").replace("Pontos","Points");
+document.getElementById("avatar").innerHTML="Avatar";
+document.getElementById("tema").innerHTML="Theme";
+document.getElementById("icones").innerHTML="Icons";
+		}
+		
+		if(linguagem=="esp"){document.getElementById('pt').style.color="white";document.getElementById('en').style.color="white";
+		document.getElementById('esp').style.color="red";document.getElementById('fr').style.color="white";
+		document.getElementById('ch').style.color="white";
+		
+		
+		document.getElementById("termo").innerHTML="Términos de uso";
+document.getElementById("nivel_facil").innerHTML="Principiante";
+document.getElementById("nivel_intermedio").innerHTML="Intermedio";
+document.getElementById("nivel_profissional").innerHTML="Profesional";
+let jogador_1=document.getElementById("jogador_1").innerHTML;
+jogador_1=jogador_1.replace("Pontos","Puntos");
+let jogador_2=document.getElementById("jogador_2").innerHTML;
+jogador_2=jogador_2.replace("Pontos","Puntos");
+let status1=document.getElementById("status1").innerHTML;
+status1=status1.replace("Jogador","Jugador");
+let status=document.getElementById("status").innerHTML;
+status=status.replace("Jogador","Jugador");
+let titulojogadores=document.getElementById("titulojogadores").innerHTML;
+titulojogadores=titulojogadores.replace("Jogadores","Jugadores");
+let titulosequencia=document.getElementById("titulosequencia").innerHTML;
+titulosequencia=titulosequencia.replace("Sequência","Secuencia");
+let textovalidar=document.getElementById("textovalidar").innerHTML;
+textovalidar=textovalidar.replace("Validação","Validación");
+document.getElementById("btnjogar").innerHTML="Jugar";
+document.getElementById("btninterrogar").innerHTML="❓ Interrogar";
+document.getElementById("btnresponder").innerHTML="Responder";
+document.getElementById("btnvalidar").innerHTML="✅ Validar";
+document.getElementById("btnrevogar").innerHTML="❌ Revocar";
+document.getElementById("nome_perfil").placeholder="Nombre de perfil";
+document.getElementById("nome_perfil").placeholder="Nombre de perfil";
+document.getElementById("id_comunidade").placeholder="ID de la comunidad";
+document.getElementById("categoria").placeholder="ID del juego";
+document.getElementById("letra1").placeholder="Responder";
+document.getElementById("letra").placeholder="Escribe una letra";
+document.getElementById("titulocomunidade").innerHTML="Comunidad";
+let meu_idcomunidades=document.getElementById("meu_idcomunidade").innerHTML;
+meu_idcomunidades=meu_idcomunidades.replace("Sua comunidade","Tu comunidad");
+document.getElementById("avatar").innerHTML="Avatar";
+document.getElementById("tema").innerHTML="Tema";
+document.getElementById("icones").innerHTML="Iconos";}
+		
+		if(linguagem=="fr"){document.getElementById('pt').style.color="white";document.getElementById('en').style.color="white";
+		document.getElementById('esp').style.color="white";document.getElementById('fr').style.color="red";
+		document.getElementById('ch').style.color="white";
+		
+		document.getElementById("termo").innerHTML="Conditions d'utilisation";
+document.getElementById("nivel_facil").innerHTML="Débutant";
+document.getElementById("nivel_intermedio").innerHTML="Intermédiaire";
+document.getElementById("nivel_profissional").innerHTML="Professionnel";
+let jogador_1=document.getElementById("jogador_1").innerHTML;
+jogador_1=jogador_1.replace("Pontos","Points");
+let jogador_2=document.getElementById("jogador_2").innerHTML;
+jogador_2=jogador_2.replace("Pontos","Points");
+let status1=document.getElementById("status1").innerHTML;
+status1=status1.replace("Jogador","Joueur");
+let status=document.getElementById("status").innerHTML;
+status=status.replace("Jogador","Joueur");
+let titulojogadores=document.getElementById("titulojogadores").innerHTML;
+titulojogadores=titulojogadores.replace("Jogadores","Joueurs");
+let titulosequencia=document.getElementById("titulosequencia").innerHTML;
+titulosequencia=titulosequencia.replace("Sequência","Séquence");
+let textovalidar=document.getElementById("textovalidar").innerHTML;
+textovalidar=textovalidar.replace("Validação","Validation");
+document.getElementById("btnjogar").innerHTML="Jouer";
+document.getElementById("btninterrogar").innerHTML="❓ Interroger";
+document.getElementById("btnresponder").innerHTML="Répondre";
+document.getElementById("btnvalidar").innerHTML="✅ Valider";
+document.getElementById("btnrevogar").innerHTML="❌ Révoquer";
+document.getElementById("nome_perfil").placeholder="Nom de profil";
+document.getElementById("nome_perfil").placeholder="Nom de profil";
+document.getElementById("id_comunidade").placeholder="ID de la communauté";
+document.getElementById("categoria").placeholder="ID du jeu";
+document.getElementById("letra1").placeholder="Répondre";
+document.getElementById("letra").placeholder="Entrez une lettre";
+document.getElementById("titulocomunidade").innerHTML="Communauté";
+let meu_idcomunidades=document.getElementById("meu_idcomunidade").innerHTML;
+meu_idcomunidades=meu_idcomunidades.replace("Sua comunidade","Votre communauté");
+document.getElementById("avatar").innerHTML="Avatar";
+document.getElementById("tema").innerHTML="Thème";
+document.getElementById("icones").innerHTML="Icônes";}
+		
+		
+		if(linguagem=="ch"){document.getElementById('pt').style.color="white";document.getElementById('en').style.color="white";
+		document.getElementById('esp').style.color="white";document.getElementById('fr').style.color="white";
+		document.getElementById('ch').style.color="red";
+		
+		
+		document.getElementById("termo").innerHTML="使用条款";
+document.getElementById("nivel_facil").innerHTML="初学者";
+document.getElementById("nivel_intermedio").innerHTML="中级";
+document.getElementById("nivel_profissional").innerHTML="专业";
+let jogador_1=document.getElementById("jogador_1").innerHTML;
+jogador_1=jogador_1.replace("Pontos","分数");
+let jogador_2=document.getElementById("jogador_2").innerHTML;
+jogador_2=jogador_2.replace("Pontos","分数");
+let status1=document.getElementById("status1").innerHTML;
+status1=status1.replace("Jogador","玩家");
+let status=document.getElementById("status").innerHTML;
+status=status.replace("Jogador","玩家");
+let titulojogadores=document.getElementById("titulojogadores").innerHTML;
+titulojogadores=titulojogadores.replace("Jogadores","玩家");
+let titulosequencia=document.getElementById("titulosequencia").innerHTML;
+titulosequencia=titulosequencia.replace("Sequência","顺序");
+let textovalidar=document.getElementById("textovalidar").innerHTML;
+textovalidar=textovalidar.replace("Validação","验证");
+document.getElementById("btnjogar").innerHTML="游戏";
+document.getElementById("btninterrogar").innerHTML="❓ 质问";
+document.getElementById("btnresponder").innerHTML="回答";
+document.getElementById("btnvalidar").innerHTML="✅ 验证";
+document.getElementById("btnrevogar").innerHTML="❌ 撤销";
+document.getElementById("nome_perfil").placeholder="个人资料名称";
+document.getElementById("nome_perfil").placeholder="个人资料名称";
+document.getElementById("id_comunidade").placeholder="社区ID";
+document.getElementById("categoria").placeholder="游戏ID";
+document.getElementById("letra1").placeholder="回答";
+document.getElementById("letra").placeholder="输入一个字母";
+document.getElementById("titulocomunidade").innerHTML="社区";
+let meu_idcomunidades=document.getElementById("meu_idcomunidade").innerHTML;
+meu_idcomunidades=meu_idcomunidades.replace("Sua comunidade","你的社区");
+document.getElementById("avatar").innerHTML="头像";
+document.getElementById("tema").innerHTML="主题";
+document.getElementById("icones").innerHTML="图标";
+}
+		
+		}
+		
+		
+		document.getElementById("pt").addEventListener("click", () => {
+		linguagem="pt";
+		localStorage.setItem("linguagem", linguagem);
+		chamalinguagem();
+		});
+		
+		
+		document.getElementById("en").addEventListener("click", () => {
+		linguagem="en";
+		localStorage.setItem("linguagem", linguagem);
+		chamalinguagem();
+		});
+		
+		document.getElementById("esp").addEventListener("click", () => {
+		linguagem="esp";
+		localStorage.setItem("linguagem", linguagem);
+		chamalinguagem();
+		});
+		
+		document.getElementById("fr").addEventListener("click", () => {
+		linguagem="fr";
+		localStorage.setItem("linguagem", linguagem);
+		chamalinguagem();
+		});
+		
+		document.getElementById("ch").addEventListener("click", () => {
+		linguagem="ch";
+		localStorage.setItem("linguagem", linguagem);
+		chamalinguagem();
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		//inicio do x bola
+	/*let abrir_xbola=-1;
+	if(abrir_xbola==0){
+	criarTabuleiro();*/
+	const tabuleiro = document.getElementById("tabuleiro");
+    const status = document.getElementById("status");
+	const status1 = document.getElementById("status1");
+    let jogadorAtual = "X";
+    let jogoAtivo = true;
+    let estadoJogo = ["", "", "", "", "", "", "", "", ""];
+
+    const combinacoesVitoria = [
+      [0,1,2], [3,4,5], [6,7,8], // linhas
+      [0,3,6], [1,4,7], [2,5,8], // colunas
+      [0,4,8], [2,4,6]           // diagonais
+    ];
+
+    function criarTabuleiro() {
+      tabuleiro.innerHTML = "";
+      estadoJogo.forEach((valor, index) => {
+        const celula = document.createElement("div");
+        celula.classList.add("celula");
+        celula.dataset.index = index;
+        celula.addEventListener("click", () => jogar(index));
+        celula.textContent = valor;
+        tabuleiro.appendChild(celula);
+      });
+    }
+
+    function jogar(index) {
+      if (estadoJogo[index] !== "" || !jogoAtivo) return;
+      estadoJogo[index] = jogadorAtual;
+      criarTabuleiro();
+      verificarResultado();
+    }
+
+    function verificarResultado() {
+      let venceu = false;
+      for (const combinacao of combinacoesVitoria) {
+        const [a, b, c] = combinacao;
+        if (estadoJogo[a] && estadoJogo[a] === estadoJogo[b] && estadoJogo[a] === estadoJogo[c]) {
+          venceu = true;
+          break;
+        }
+      }
+
+      if (venceu) {
+	  if(jogadorAtual=="X"){status1.textContent = `Jogador ${jogadorAtual} venceu!`;
+	  status.textContent = `Você venceu!`;}else{
+	  status.textContent = `Jogador ${jogadorAtual} venceu!`;
+	  status1.textContent = `Você venceu!`;}
+        if(som=="ativo"){
+  var musica2= new Audio("musica/vitoria.wav");
+musica2.loop = false;
+musica2.play();}
+        jogoAtivo = false;
+        return;
+      }
+
+      if (!estadoJogo.includes("")) {
+        status.textContent = "Empate!";
+		status1.textContent = "Empate!";
+		if(som=="ativo"){
+  var musica2= new Audio("musica/vitoria.wav");
+musica2.loop = false;
+musica2.play();}
+        jogoAtivo = false;
+        return;
+      }
+
+      jogadorAtual = jogadorAtual === "X" ? "O" : "X";
+	  if(jogadorAtual=="X"){status1.textContent = `Vez do jogador: ${jogadorAtual}`;
+	  status.textContent = `Sua vez!`;}else{status.textContent = `Vez do jogador: ${jogadorAtual}`;
+	  status1.textContent = `Sua vez!`;}
+      
+    }
+
+    function reiniciar() {
+	reiniciar1();
+      jogadorAtual = "X";
+      jogoAtivo = true;
+      estadoJogo = ["", "", "", "", "", "", "", "", ""];
+      status1.textContent = `Vez do jogador: ${jogadorAtual}`;
+	  status.textContent = `Sua vez!`;
+      criarTabuleiro();
+    }
+	
+	//}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	const TAMANHO1 = 4;
+  const ALINHAR1 = 4;
+
+  const tabuleiro1 = document.getElementById("tabuleiro1");
+  const status2 = document.getElementById("status2");
+
+  let estadoJogo1 = Array(TAMANHO1 * TAMANHO1).fill("");
+  let jogadorAtual1 = "X";
+  let jogoAtivo1 = true;
+
+  function criarTabuleiro1() {
+    tabuleiro1.innerHTML = "";
+    estadoJogo1.forEach((valor1, index1) => {
+      const celula1 = document.createElement("div");
+      celula1.classList.add("celula1");
+      celula1.dataset.index = index1;
+      celula1.textContent = valor1;
+      celula1.addEventListener("click", () => jogar1(index1));
+      tabuleiro1.appendChild(celula1);
+    });
+  }
+
+  function jogar1(index1) {
+    if (!jogoAtivo1 || estadoJogo1[index1] !== "") return;
+    estadoJogo1[index1] = jogadorAtual1;
+    criarTabuleiro1();
+    if (verificarVitoria1(index1)) {
+      //status2.textContent = `Jogador ${jogadorAtual1} venceu!`;
+	  if(jogadorAtual1=="X"){status1a.textContent = `Jogador ${jogadorAtual1} venceu!`;
+	  status2.textContent = `Você venceu!`;}else{
+	  status2.textContent = `Jogador ${jogadorAtual1} venceu!`;
+	  status1a.textContent = `Você venceu!`;}
+      jogoAtivo1 = false;
+    } else if (!estadoJogo1.includes("")) {
+      //status2.textContent = "Empate!";
+	  status2.textContent = "Empate!";
+		status1a.textContent = "Empate!";
+      jogoAtivo1 = false;
+    } else {
+      jogadorAtual1 = jogadorAtual1 === "X" ? "O" : "X";
+      //status2.textContent = `Vez do jogador: ${jogadorAtual1}`;
+	  if(jogadorAtual1=="X"){status1a.textContent = `Vez do jogador: ${jogadorAtual1}`;
+	  status2.textContent = `Sua vez!`;}else{status2.textContent = `Vez do jogador: ${jogadorAtual1}`;
+	  status1a.textContent = `Sua vez!`;}
+    }
+  }
+
+  function verificarVitoria1(index1) {
+    const linha1 = Math.floor(index1 / TAMANHO1);
+    const coluna1 = index1 % TAMANHO1;
+
+    const direcoes1 = [
+      [0, 1],    // Horizontal
+      [1, 0],    // Vertical
+      [1, 1],    // Diagonal \
+      [1, -1]    // Diagonal /
+    ];
+
+    for (const [dx, dy] of direcoes1) {
+      let count1 = 1;
+
+      // Verifica para frente
+      for (let i = 1; i < ALINHAR1; i++) {
+        const r = linha1 + dx * i;
+        const c = coluna1 + dy * i;
+        if (r < 0 || c < 0 || r >= TAMANHO1 || c >= TAMANHO1) break;
+        if (estadoJogo1[r * TAMANHO1 + c] === jogadorAtual1) {
+          count1++;
+        } else break;
+      }
+
+      // Verifica para trás
+      for (let i = 1; i < ALINHAR1; i++) {
+        const r = linha1 - dx * i;
+        const c = coluna1 - dy * i;
+        if (r < 0 || c < 0 || r >= TAMANHO1 || c >= TAMANHO1) break;
+        if (estadoJogo1[r * TAMANHO1 + c] === jogadorAtual1) {
+          count1++;
+        } else break;
+      }
+
+      if (count1 >= ALINHAR1) return true;
+    }
+
+    return false;
+  }
+
+  function reiniciar1() {
+    estadoJogo1 = Array(TAMANHO1 * TAMANHO1).fill("");
+    jogadorAtual1 = "X";
+    jogoAtivo1 = true;
+    status2.textContent = `Vez do jogador: ${jogadorAtual1}`;
+    criarTabuleiro1();
+  }
+	
+	//fim do x bola de 3
+		
+  </script>
+</body>
+</html>
